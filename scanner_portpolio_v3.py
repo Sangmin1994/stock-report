@@ -437,16 +437,17 @@ def count_buy_signals(d_df):
         obv_rising = r["OBV"] > r["OBV_MA"] and \
                      d_df["OBV"].iloc[-1] > d_df["OBV"].iloc[-5]
 
-    # ADX 조건 확인 (AND 조건용)
-    adx_ok = False
+    # ADX 조건 확인
+    adx_ok = True  # ADX 데이터 없으면 통과
     adx_strong = False
     if "ADX" in d_df.columns and pd.notna(r.get("ADX")):
         adx_ok     = r["ADX"] > 20
         adx_strong = r["ADX"] > 25
-
-    # OBV + ADX AND 조건 — 둘 다 안 맞으면 신호 대폭 감소
+    
+    # ADX AND 조건 — 20 미만이면 횡보장으로 판단해 신호 수 절반으로만 감소
     if not adx_ok:
-        return 0, []   # 횡보장 필터 — 신호 무효화
+        if len(sigs) < 3:
+            return 0, []
 
     # 보정 점수 추가
     if obv_rising:
