@@ -997,7 +997,7 @@ def run_market_scan(sector_data=None, sector_map=None):
                 print(f"  진행: {i+1}/{len(tickers)} ... 신호 {len(results)}종목")
         except Exception as e:
             errors += 1
-            if errors <= 5:   # 처음 5개 오류만 출력
+            if errors <= 50:   # 오류 50개까지 출력
                 print(f"  [{ticker}] 오류: {type(e).__name__}: {e}")
 
     results.sort(key=lambda x: (x["adj_sig"], x["weekly"]), reverse=True)
