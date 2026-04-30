@@ -431,29 +431,16 @@ def count_buy_signals(d_df):
         if rsi_slope > 3 and 30 < r["RSI"] < 70:
             sigs.append(f"RSI상승기울기(+{rsi_slope:.1f})")
 
-    # OBV 상승 확인 (AND 조건용)
-    obv_rising = False
+    # OBV 상승 — 보정 점수만
     if "OBV" in d_df.columns and "OBV_MA" in d_df.columns:
-        obv_rising = r["OBV"] > r["OBV_MA"] and \
-                     d_df["OBV"].iloc[-1] > d_df["OBV"].iloc[-5]
-
-    # ADX 조건 확인
-    adx_ok = True  # ADX 데이터 없으면 통과
-    adx_strong = False
-    if "ADX" in d_df.columns and pd.notna(r.get("ADX")):
-        adx_ok     = r["ADX"] > 20
-        adx_strong = r["ADX"] > 25
+        if pd.notna(r.get("OBV")) and pd.notna(r.get("OBV_MA")):
+            if r["OBV"] > r["OBV_MA"] and d_df["OBV"].iloc[-1] > d_df["OBV"].iloc[-5]:
+                sigs.append(f"OBV상승({r['OBV']/r['OBV_MA']:.2f}x)")
     
-    # ADX AND 조건 — 20 미만이면 횡보장으로 판단해 신호 수 절반으로만 감소
-    if not adx_ok:
-        if len(sigs) < 3:
-            return 0, []
-
-    # 보정 점수 추가
-    if obv_rising:
-        sigs.append(f"OBV상승({r['OBV']/r['OBV_MA']:.2f}x)")
-    if adx_strong:
-        sigs.append(f"ADX강세({r['ADX']:.1f})")
+    # ADX 강세 — 보정 점수만
+    if "ADX" in d_df.columns and pd.notna(r.get("ADX")):
+        if r["ADX"] > 25:
+            sigs.append(f"ADX강세({r['ADX']:.1f})")
 
     return len(sigs), sigs
 
