@@ -233,8 +233,8 @@ with tab1:
             return "color: #94a3b8"
 
         styled = df_sector.style\
-            .applymap(color_status, subset=["상태"])\
-            .applymap(color_trend,  subset=["추세유형"])\
+            .map(color_status, subset=["상태"])\
+            .map(color_trend,  subset=["추세유형"])\
             .set_properties(**{
                 "background-color": "#1e2130",
                 "color": "#e2e8f0",
@@ -336,8 +336,8 @@ with tab2:
                 return "color: #94a3b8"
 
             styled_scan = df_scan.style\
-                .applymap(color_sector, subset=["섹터"])\
-                .applymap(color_fund,   subset=["펀더멘털"])\
+                .map(color_sector, subset=["섹터"])\
+                .map(color_fund,   subset=["펀더멘털"])\
                 .set_properties(**{
                     "background-color": "#1e2130",
                     "color": "#e2e8f0",
@@ -431,8 +431,8 @@ with tab3:
                 return "color: #94a3b8"
 
             styled_port = df_port.style\
-                .applymap(color_pnl,         subset=["수익률", "평가손익"])\
-                .applymap(color_port_status, subset=["상태"])\
+                .map(color_pnl,         subset=["수익률", "평가손익"])\
+                .map(color_port_status, subset=["상태"])\
                 .set_properties(**{
                     "background-color": "#1e2130",
                     "color": "#e2e8f0",
