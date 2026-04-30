@@ -26,7 +26,7 @@ import os
 EMAIL_FROM     = os.environ.get("EMAIL_FROM", "")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "")
 EMAIL_TO       = os.environ.get("EMAIL_TO", "")
-GSHEET_KEY_FILE = os.environ.get("GSHEET_KEY_FILE", "credentials.json")
+GSHEET_KEY_FILE = os.environ.get("GSHEET_KEY_FILE", "stately-transit-494900-i8-524c44e2e62d.json")
 GSHEET_ID       = os.environ.get("GSHEET_ID", "")
 GSHEET_SHEET    = os.environ.get("GSHEET_SHEET", "시트1")
 
