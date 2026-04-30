@@ -90,10 +90,18 @@ except Exception as e:
     LOAD_ERR = str(e)
 
 def load_sector_map():
-    if os.path.exists("sector_map_cache.json"):
-        with open("sector_map_cache.json", "r") as f:
+    # 현재 파일 기준 절대 경로로 찾기
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    cache_path = os.path.join(base_dir, "sector_map_cache.json")
+    if os.path.exists(cache_path):
+        with open(cache_path, "r") as f:
             return json.load(f)
-    return {}
+    # TICKER_SECTOR 폴백
+    try:
+        from scanner_portpolio_v3 import TICKER_SECTOR
+        return TICKER_SECTOR
+    except:
+        return {}
 
 # ── 사이드바 ─────────────────────────────────
 with st.sidebar:
