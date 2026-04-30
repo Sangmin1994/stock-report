@@ -849,6 +849,17 @@ def analyze_sectors():
             }
         except Exception as e:
             print(f"    [{etf}] 오류: {e}")
+            # 오류 시 기본값으로 추가
+            sector_data[etf] = {
+                "label": SECTOR_ETFS.get(etf, etf),
+                "score": 0, "rsi": 50,
+                "ret_1w": 0, "ret_1m": 0,
+                "ret_3m": 0, "ret_6m": 0,
+                "bull_1w": False, "bull_1m": False,
+                "bull_3m": False, "bull_6m": False,
+                "trend_type": "미분류",
+                "status": "⚪ 관망", "weight_add": 0,
+            }
     sector_data = dict(sorted(sector_data.items(),
         key=lambda x: (x[1]["score"], x[1]["ret_1m"]), reverse=True))
     print(f"  섹터 분석 완료 ({len(sector_data)}개)")
