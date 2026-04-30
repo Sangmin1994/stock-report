@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+
+# Streamlit Cloud Secrets → 환경변수로 설정
+if hasattr(st, "secrets"):
+    for key, val in st.secrets.items():
+        os.environ[key] = str(val)
 from datetime import datetime
 
 # ── 페이지 설정 ──────────────────────────────

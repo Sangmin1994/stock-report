@@ -20,9 +20,15 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 # ════════════════════════════════════════════
 #  ★ 사용자 설정 — 여기만 수정하세요
 # ════════════════════════════════════════════
-EMAIL_FROM     = "dltkdals15319@gmail.com"
-EMAIL_PASSWORD = "kiobsnqaugxjaucc"
-EMAIL_TO       = "dltkdals15319@gmail.com"
+import streamlit as st
+import os
+
+EMAIL_FROM     = os.environ.get("EMAIL_FROM", "")
+EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "")
+EMAIL_TO       = os.environ.get("EMAIL_TO", "")
+GSHEET_KEY_FILE = os.environ.get("GSHEET_KEY_FILE", "credentials.json")
+GSHEET_ID       = os.environ.get("GSHEET_ID", "")
+GSHEET_SHEET    = os.environ.get("GSHEET_SHEET", "시트1")
 
 PORTFOLIO_FILE  = "portfolio.csv"
 SCHEDULE_HOUR   = 10
@@ -31,10 +37,6 @@ SCHEDULE_MINUTE = 16
 SCAN_BUY_THRESHOLD = 3
 SCAN_WEEKLY_MIN    = 2
 PORT_BUY_THRESHOLD = 3
-
-GSHEET_KEY_FILE = "stately-transit-494900-i8-5ffb6764e076.json"  # JSON 파일명으로 교체
-GSHEET_ID       = "1YBeI6rKzlx8AK23FldZBHwMiLF3J4pFP141aUF6NSEg"
-GSHEET_SHEET    = "시트1"  # 시트 탭 이름 (기본값 "시트1")
 
 # ════════════════════════════════════════════
 #  신규 — yfinance 자동 티커/섹터 수집
@@ -957,8 +959,16 @@ def run_portfolio_update(sector_map=None, sector_data=None):
             "https://www.googleapis.com/auth/spreadsheets",
             "https://www.googleapis.com/auth/drive",
         ]
-        creds     = Credentials.from_service_account_file(
+        import json
+        if os.path.exists(GSHEET_KEY_FILE):
+            # 로컬 환경
+            creds = Credentials.from_service_account_file(
                         GSHEET_KEY_FILE, scopes=scopes)
+        else:
+            # Streamlit Cloud 환경
+            key_dict = json.loads(os.environ.get("GSHEET_JSON", "{}"))
+            creds = Credentials.from_service_account_info(
+                        key_dict, scopes=scopes)
         gc        = gspread.authorize(creds)
         sh        = gc.open_by_key(GSHEET_ID)
         ws        = sh.worksheet(GSHEET_SHEET)
