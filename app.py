@@ -223,11 +223,8 @@ with tab2:
             with st.spinner("섹터 분석 중..."):
                 st.session_state["sector_data"] = analyze_sectors()
         with st.spinner("스캔 중..."):
-            _sector_map = load_sector_map()
-            st.write(f"sector_map 종목 수: {len(_sector_map)}")
-            st.write(f"sector_data 키 수: {len(st.session_state.get('sector_data', {}))}")
             st.session_state["scan_res"] = run_market_scan(
-                st.session_state["sector_data"], _sector_map)
+                st.session_state["sector_data"], load_sector_map())
         st.success(f"✅ {len(st.session_state['scan_res'])}종목 신호 발생!")
 
     if "scan_res" not in st.session_state and os.path.exists(today_csv):
