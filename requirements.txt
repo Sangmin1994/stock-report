@@ -1,0 +1,10 @@
+yfinance
+ta
+numpy
+pandas
+requests
+apscheduler
+gspread
+google-auth
+matplotlib
+streamlit
