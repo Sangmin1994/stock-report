@@ -37,7 +37,8 @@ PORTFOLIO_FILE  = "portfolio.csv"
 SCHEDULE_HOUR   = 10
 SCHEDULE_MINUTE = 16
 
-SCAN_BUY_THRESHOLD = 3
+SCAN_BUY_THRESHOLD = 3  # 기본 신호 최소 개수
+ADJ_THRESHOLD      = 5  # 보정 포함 최소 개수
 SCAN_WEEKLY_MIN    = 2
 PORT_BUY_THRESHOLD = 3
 
@@ -958,13 +959,13 @@ def run_market_scan(sector_data=None, sector_map=None):
             stop_pct   = round((stop   / entry - 1) * 100, 2)
             target_pct = round((target / entry - 1) * 100, 2)
             sec_add, sec_status = get_sector_weight(ticker, sector_map, sector_data or {})
-            # 52주 신고가 근접 보정
+            # 52주 신고가 근접 보정 (+1점)
             if near_52w_high:
                 sec_add += 1
-            # 베타 안정적 보정
-            if 0.5 <= beta <= 1.5:
-                sec_add += 1
+            # 베타는 점수 반영 제거 — 표시만 유지
             adj_signals = sig_cnt + sec_add
+            if adj_signals < ADJ_THRESHOLD:
+                continue
             results.append({
                 "date":      datetime.now().strftime("%Y-%m-%d"),
                 "ticker":    ticker,
@@ -987,7 +988,8 @@ def run_market_scan(sector_data=None, sector_map=None):
                 "fund_judge": fund_judge,
                 "beta":         beta,
                 "near_52w":     near_52w_high,
-                "adx":          round(r["ADX"], 1) if pd.notna(r.get("ADX")) else 0,
+                "priority":     "⭐⭐" if adj_signals >= 7 else "⭐" if adj_signals >= 6 else "",
+                "adx":          round(d_df["ADX"].iloc[-1], 1) if "ADX" in d_df.columns and pd.notna(d_df["ADX"].iloc[-1]) else 0,
                 "fund_cnt":   fund_cnt,
                 "fund_risks": " / ".join(fund_risks) if fund_risks else "없음",
             })
@@ -1253,6 +1255,7 @@ def send_email(scan_results, port_results, sector_data=None):
             buy_det  = r.get("buy_detail", r.get("details",""))
             date_str = r.get("date", today)
             scan_rows += f"""<tr style="background:{bg}">
+  <td style="padding:10px 12px;text-align:center;font-size:14px">{r.get("priority","")}</td>
   <td style="padding:10px 12px;font-weight:700;color:#1e40af">{r["ticker"]}</td>
   <td style="padding:10px 12px;text-align:right">${r["price"]:.2f}</td>
   <td style="padding:10px 12px;text-align:center">
@@ -1283,6 +1286,7 @@ def send_email(scan_results, port_results, sector_data=None):
 </h3>
 <table style="width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed">
 <thead><tr style="background:#16a34a;color:white">
+  <th style="padding:11px 12px;text-align:center">순위</th>
   <th style="padding:11px 12px;text-align:left">종목</th>
   <th style="padding:11px 12px;text-align:right">현재가</th>
   <th style="padding:11px 12px;text-align:center">매수신호</th>
