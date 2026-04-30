@@ -1025,7 +1025,10 @@ def run_portfolio_update(sector_map=None, sector_data=None):
             # 펀더멘털 판정
             fund_ok = "✅" in fund_judge
 
-            memo = str(row["memo"]).strip() if "memo" in row.index and pd.notna(row["memo"]) else ""
+            try:
+                memo = str(row["memo"]).strip() if pd.notna(row.get("memo", "")) else ""
+            except:
+                memo = ""
 
             if "재진입대기" in memo:
                 if sig_cnt >= 3 and ws >= 2:
