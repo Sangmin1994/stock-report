@@ -229,6 +229,7 @@ with tab2:
             st.write(f"sector_data 키 수: {len(st.session_state.get('sector_data', {}))}")
             st.write(f"ADJ_THRESHOLD: {ADJ_THRESHOLD}")
             st.write(f"SCAN_BUY_THRESHOLD: {SCAN_BUY_THRESHOLD}")
+            st.write(f"sector_data 키: {list(st.session_state.get('sector_data', {}).keys())}")
             st.session_state["scan_res"] = run_market_scan(
                 st.session_state["sector_data"], _sector_map)
         st.success(f"✅ {len(st.session_state['scan_res'])}종목 신호 발생!")
