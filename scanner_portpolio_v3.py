@@ -940,15 +940,15 @@ def run_market_scan(sector_data=None, sector_map=None):
             high_52w = d_df["High"].tail(252).max()
             near_52w_high = entry >= high_52w * 0.80  # 신고가 20% 이내
 
-            # 베타 계수 계산 — SPY 데이터는 루프 밖에서 한 번만 로드
+            # 베타 계수 계산
             try:
-                if "spy_returns" not in dir():
-                    beta = 1.0
-                else:
+                if spy_returns is not None and len(spy_returns) >= 60:
                     ret_stock = d_df["Close"].pct_change().tail(60)
-                    cov  = np.cov(ret_stock, spy_returns)[0][1]
-                    var  = np.var(spy_returns)
-                    beta = round(cov / var, 2) if var > 0 else 1.0
+                    _cov  = np.cov(ret_stock.values, spy_returns.values)[0][1]
+                    _var  = np.var(spy_returns.values)
+                    beta  = round(_cov / _var, 2) if _var > 0 else 1.0
+                else:
+                    beta = 1.0
             except:
                 beta = 1.0
             etf_code   = (sector_map or {}).get(ticker.upper(), "")
