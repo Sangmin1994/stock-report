@@ -30,7 +30,7 @@ EMAIL_FROM     = os.environ.get("EMAIL_FROM", "")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "")
 EMAIL_TO       = os.environ.get("EMAIL_TO", "")
 GSHEET_KEY_FILE = os.environ.get("GSHEET_KEY_FILE", "stately-transit-494900-i8-524c44e2e62d.json")
-GSHEET_ID       = os.environ.get("GSHEET_ID", "")
+GSHEET_ID       = os.environ.get("GSHEET_ID", "1YBeI6rKzlx8AK23FldZBHwMiLF3J4pFP141aUF6NSEg")
 GSHEET_SHEET    = os.environ.get("GSHEET_SHEET", "시트1")
 
 PORTFOLIO_FILE  = "portfolio.csv"
@@ -1026,11 +1026,11 @@ def run_portfolio_update(sector_map=None, sector_data=None):
             fund_ok = "✅" in fund_judge
 
             try:
-                memo_val = row["memo"] if "memo" in portfolio.columns else ""
+                memo_val = row["memo"] if "memo" in row.index else ""
                 memo = str(memo_val).strip() if pd.notna(memo_val) and str(memo_val) != "nan" else ""
             except:
                 memo = ""
-            
+
             if "재진입대기" in memo:
                 if sig_cnt >= 3 and ws >= 2:
                     status = "🟣 재진입 신호 발생 — 매수 검토"
