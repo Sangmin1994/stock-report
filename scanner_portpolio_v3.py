@@ -339,6 +339,31 @@ def prepare_df(ticker):
     d["%K"], d["%D"] = stoch_slow(d["High"], d["Low"], d["Close"])
     d["span_a"], d["span_b"] = ichimoku_hts(d["High"], d["Low"])
     d["ATR"] = calc_atr(d)
+    # OBV 계산
+    obv = [0]
+    for i in range(1, len(d)):
+        if d["Close"].iloc[i] > d["Close"].iloc[i-1]:
+            obv.append(obv[-1] + d["Volume"].iloc[i])
+        elif d["Close"].iloc[i] < d["Close"].iloc[i-1]:
+            obv.append(obv[-1] - d["Volume"].iloc[i])
+        else:
+            obv.append(obv[-1])
+    d["OBV"] = obv
+    d["OBV_MA"] = pd.Series(obv).rolling(20).mean().values
+    
+    # ADX 계산
+    high, low, close = d["High"], d["Low"], d["Close"]
+    plus_dm  = high.diff().clip(lower=0)
+    minus_dm = (-low.diff()).clip(lower=0)
+    plus_dm[plus_dm < (-low.diff()).clip(lower=0)]  = 0
+    minus_dm[minus_dm < high.diff().clip(lower=0)] = 0
+    atr14    = calc_atr(d, period=14)
+    plus_di  = 100 * (plus_dm.ewm(span=14).mean()  / atr14)
+    minus_di = 100 * (minus_dm.ewm(span=14).mean() / atr14)
+    dx       = (abs(plus_di - minus_di) / (plus_di + minus_di).replace(0, np.nan)) * 100
+    d["ADX"]      = dx.ewm(span=14).mean()
+    d["PLUS_DI"]  = plus_di
+    d["MINUS_DI"] = minus_di
 
     w = yf.Ticker(ticker).history(period="3y", interval="1wk")
     if len(w) < 30:
@@ -405,6 +430,29 @@ def count_buy_signals(d_df):
         rsi_slope = r["RSI"] - rsi_3d_ago
         if rsi_slope > 3 and 30 < r["RSI"] < 70:
             sigs.append(f"RSI상승기울기(+{rsi_slope:.1f})")
+
+    # OBV 상승 확인 (AND 조건용)
+    obv_rising = False
+    if "OBV" in d_df.columns and "OBV_MA" in d_df.columns:
+        obv_rising = r["OBV"] > r["OBV_MA"] and \
+                     d_df["OBV"].iloc[-1] > d_df["OBV"].iloc[-5]
+
+    # ADX 조건 확인 (AND 조건용)
+    adx_ok = False
+    adx_strong = False
+    if "ADX" in d_df.columns and pd.notna(r.get("ADX")):
+        adx_ok     = r["ADX"] > 20
+        adx_strong = r["ADX"] > 25
+
+    # OBV + ADX AND 조건 — 둘 다 안 맞으면 신호 대폭 감소
+    if not adx_ok:
+        return 0, []   # 횡보장 필터 — 신호 무효화
+
+    # 보정 점수 추가
+    if obv_rising:
+        sigs.append(f"OBV상승({r['OBV']/r['OBV_MA']:.2f}x)")
+    if adx_strong:
+        sigs.append(f"ADX강세({r['ADX']:.1f})")
 
     return len(sigs), sigs
 
@@ -609,6 +657,13 @@ def calc_stop_target(d_df, entry):
     target_bb  = r["BB_upper"] if pd.notna(r.get("BB_upper")) else entry * 1.10
     target     = float(np.median([target_rr, target_bb, target_rr]))
     rr         = (target - entry) / risk if risk > 0 else 0
+
+    # 피보나치 되돌림 레벨 계산
+    high_recent = d_df["High"].tail(60).max()
+    low_recent  = d_df["Low"].tail(60).min()
+    fib_382 = round(high_recent - (high_recent - low_recent) * 0.382, 2)
+    fib_618 = round(high_recent - (high_recent - low_recent) * 0.618, 2)
+
     return round(stop, 2), round(target, 2), round(rr, 2)
 
 def generate_chart_base64(ticker, d_df):
@@ -886,6 +941,23 @@ def run_market_scan(sector_data=None, sector_map=None):
                         r_chk["Close"] > max(r_chk["span_a"], r_chk["span_b"])):
                     continue
             entry = round(d_df["Close"].iloc[-1], 2)
+            # 52주 신고가 근접 여부
+            high_52w = d_df["High"].tail(252).max()
+            near_52w_high = entry >= high_52w * 0.80  # 신고가 20% 이내
+
+            # 베타 계수 계산
+            try:
+                spy_df, _ = prepare_df("SPY")
+                if spy_df is not None and len(spy_df) >= 60:
+                    ret_stock = d_df["Close"].pct_change().tail(60)
+                    ret_spy   = spy_df["Close"].pct_change().tail(60)
+                    cov   = np.cov(ret_stock, ret_spy)[0][1]
+                    var   = np.var(ret_spy)
+                    beta  = round(cov / var, 2) if var > 0 else 1.0
+                else:
+                    beta = 1.0
+            except:
+                beta = 1.0
             etf_code   = (sector_map or {}).get(ticker.upper(), "")
             trend_type = sector_data.get(etf_code, {}).get("trend_type", "미분류") if sector_data else "미분류"
             fund_cnt, fund_risks, fund_judge = check_fundamental(ticker, etf_code)
@@ -893,6 +965,12 @@ def run_market_scan(sector_data=None, sector_map=None):
             stop_pct   = round((stop   / entry - 1) * 100, 2)
             target_pct = round((target / entry - 1) * 100, 2)
             sec_add, sec_status = get_sector_weight(ticker, sector_map, sector_data or {})
+            # 52주 신고가 근접 보정
+            if near_52w_high:
+                sec_add += 1
+            # 베타 안정적 보정
+            if 0.5 <= beta <= 1.5:
+                sec_add += 1
             adj_signals = sig_cnt + sec_add
             results.append({
                 "date":      datetime.now().strftime("%Y-%m-%d"),
@@ -914,6 +992,9 @@ def run_market_scan(sector_data=None, sector_map=None):
                 "strategy": strategy,
                 "details":   " / ".join(sig_list),
                 "fund_judge": fund_judge,
+                "beta":         beta,
+                "near_52w":     near_52w_high,
+                "adx":          round(r["ADX"], 1) if pd.notna(r.get("ADX")) else 0,
                 "fund_cnt":   fund_cnt,
                 "fund_risks": " / ".join(fund_risks) if fund_risks else "없음",
             })
