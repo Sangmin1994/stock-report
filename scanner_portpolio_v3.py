@@ -898,6 +898,13 @@ def run_market_scan(sector_data=None, sector_map=None):
     tickers = list(set(sp500 + ndaq100))
     print(f"  스캔 대상: {len(tickers)}종목")
 
+    # SPY 수익률 미리 로드 (베타 계산용) ← 여기에 추가
+    try:
+        spy_df, _ = prepare_df("SPY")
+        spy_returns = spy_df["Close"].pct_change().tail(60) if spy_df is not None else None
+    except:
+        spy_returns = None
+
     # sector_map 없으면 자동 구축 (시간 소요 — 생략 가능)
     if sector_map is None:
         sector_map = {}
@@ -933,17 +940,15 @@ def run_market_scan(sector_data=None, sector_map=None):
             high_52w = d_df["High"].tail(252).max()
             near_52w_high = entry >= high_52w * 0.80  # 신고가 20% 이내
 
-            # 베타 계수 계산
+            # 베타 계수 계산 — SPY 데이터는 루프 밖에서 한 번만 로드
             try:
-                spy_df, _ = prepare_df("SPY")
-                if spy_df is not None and len(spy_df) >= 60:
-                    ret_stock = d_df["Close"].pct_change().tail(60)
-                    ret_spy   = spy_df["Close"].pct_change().tail(60)
-                    cov   = np.cov(ret_stock, ret_spy)[0][1]
-                    var   = np.var(ret_spy)
-                    beta  = round(cov / var, 2) if var > 0 else 1.0
-                else:
+                if "spy_returns" not in dir():
                     beta = 1.0
+                else:
+                    ret_stock = d_df["Close"].pct_change().tail(60)
+                    cov  = np.cov(ret_stock, spy_returns)[0][1]
+                    var  = np.var(spy_returns)
+                    beta = round(cov / var, 2) if var > 0 else 1.0
             except:
                 beta = 1.0
             etf_code   = (sector_map or {}).get(ticker.upper(), "")
