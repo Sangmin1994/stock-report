@@ -2,12 +2,13 @@ import streamlit as st
 import pandas as pd
 import json
 import os
+from datetime import datetime
 
-# Streamlit Cloud Secrets → 환경변수로 설정
+# Streamlit Cloud Secrets → 환경변수 설정
 if hasattr(st, "secrets"):
     for key, val in st.secrets.items():
-        os.environ[key] = str(val)
-from datetime import datetime
+        if isinstance(val, str):
+            os.environ[key] = val
 
 # ── 페이지 설정 ──────────────────────────────
 st.set_page_config(
@@ -239,8 +240,29 @@ with tab1:
                 "background-color": "#1e2130",
                 "color": "#e2e8f0",
                 "border": "1px solid #2d3748",
-            })
-        st.dataframe(styled, use_container_width=True, height=420)
+                "padding": "10px 16px",
+                "font-size": "13px",
+            })\
+            .set_table_styles([
+                {"selector": "th", "props": [
+                    ("background-color", "#1a1d27"),
+                    ("color", "#93c5fd"),
+                    ("font-weight", "700"),
+                    ("padding", "11px 16px"),
+                    ("font-size", "13px"),
+                    ("border-bottom", "2px solid #2563eb"),
+                ]},
+                {"selector": "td:nth-child(1)", "props": [("font-weight", "700"), ("color", "#60a5fa")]},
+                {"selector": "td:nth-child(3)", "props": [("text-align", "center"), ("font-weight", "700")]},
+                {"selector": "td:nth-child(4)", "props": [("text-align", "center")]},
+                {"selector": "td:nth-child(5)", "props": [("text-align", "center")]},
+                {"selector": "td:nth-child(6)", "props": [("text-align", "center")]},
+                {"selector": "td:nth-child(7)", "props": [("text-align", "center")]},
+                {"selector": "td:nth-child(8)", "props": [("text-align", "center")]},
+                {"selector": "td:nth-child(9)", "props": [("text-align", "center"), ("font-weight", "700")]},
+                {"selector": "td:nth-child(10)", "props": [("text-align", "center"), ("font-weight", "700")]},
+            ])
+        st.dataframe(styled, use_container_width=True, height=440)
     else:
         st.info("위 버튼을 눌러 섹터 분석을 실행하세요.")
 
@@ -342,9 +364,55 @@ with tab2:
                     "background-color": "#1e2130",
                     "color": "#e2e8f0",
                     "border": "1px solid #2d3748",
-                })
+                    "padding": "10px 12px",
+                    "font-size": "13px",
+                })\
+                .set_table_styles([
+                    {"selector": "th", "props": [
+                        ("background-color", "#1a1d27"),
+                        ("color", "#93c5fd"),
+                        ("font-weight", "700"),
+                        ("padding", "11px 12px"),
+                        ("font-size", "13px"),
+                        ("border-bottom", "2px solid #16a34a"),
+                        ("white-space", "nowrap"),
+                    ]},
+                    {"selector": "td:nth-child(1)", "props": [
+                        ("font-weight", "700"),
+                        ("color", "#60a5fa"),
+                        ("font-size", "14px"),
+                    ]},
+                    {"selector": "td:nth-child(2)", "props": [
+                        ("text-align", "center"),
+                        ("font-weight", "700"),
+                        ("color", "#c4b5fd"),
+                    ]},
+                    {"selector": "td:nth-child(3)", "props": [("text-align", "right")]},
+                    {"selector": "td:nth-child(4)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(5)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(6)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(7)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(9)", "props": [
+                        ("text-align", "center"),
+                        ("color", "#fca5a5"),
+                        ("font-weight", "600"),
+                    ]},
+                    {"selector": "td:nth-child(10)", "props": [
+                        ("text-align", "center"),
+                        ("color", "#6ee7b7"),
+                        ("font-weight", "600"),
+                    ]},
+                    {"selector": "td:nth-child(11)", "props": [("text-align", "center"), ("font-weight", "700")]},
+                    {"selector": "td:nth-child(13)", "props": [
+                        ("max-width", "200px"),
+                        ("overflow", "hidden"),
+                        ("text-overflow", "ellipsis"),
+                        ("white-space", "nowrap"),
+                        ("color", "#86efac"),
+                    ]},
+                ])
             st.dataframe(styled_scan, use_container_width=True,
-                         height=500)
+                         height=520)
             st.caption(f"총 {len(rows)}종목 표시 중")
         else:
             st.warning("필터 조건에 맞는 종목이 없어요.")
@@ -437,9 +505,36 @@ with tab3:
                     "background-color": "#1e2130",
                     "color": "#e2e8f0",
                     "border": "1px solid #2d3748",
-                })
+                    "padding": "10px 12px",
+                    "font-size": "13px",
+                })\
+                .set_table_styles([
+                    {"selector": "th", "props": [
+                        ("background-color", "#1a1d27"),
+                        ("color", "#93c5fd"),
+                        ("font-weight", "700"),
+                        ("padding", "11px 12px"),
+                        ("font-size", "13px"),
+                        ("border-bottom", "2px solid #7c3aed"),
+                        ("white-space", "nowrap"),
+                    ]},
+                    {"selector": "td:nth-child(1)", "props": [
+                        ("font-weight", "700"),
+                        ("color", "#c4b5fd"),
+                        ("font-size", "14px"),
+                    ]},
+                    {"selector": "td:nth-child(3)", "props": [("text-align", "right")]},
+                    {"selector": "td:nth-child(4)", "props": [("text-align", "right")]},
+                    {"selector": "td:nth-child(5)", "props": [("text-align", "center"), ("font-weight", "700")]},
+                    {"selector": "td:nth-child(6)", "props": [("text-align", "right")]},
+                    {"selector": "td:nth-child(7)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(8)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(9)", "props": [("text-align", "center"), ("font-weight", "600")]},
+                    {"selector": "td:nth-child(10)", "props": [("text-align", "center")]},
+                    {"selector": "td:nth-child(11)", "props": [("font-weight", "700")]},
+                ])
             st.dataframe(styled_port, use_container_width=True,
-                         height=380)
+                         height=400)
     else:
         st.info("위 버튼을 눌러 포트폴리오를 업데이트하세요.")
 

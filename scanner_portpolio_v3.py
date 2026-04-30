@@ -20,9 +20,12 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 # ════════════════════════════════════════════
 #  ★ 사용자 설정 — 여기만 수정하세요
 # ════════════════════════════════════════════
-import streamlit as st
 import os
-
+try:
+    import streamlit as st
+    _HAS_ST = True
+except ImportError:
+    _HAS_ST = False
 EMAIL_FROM     = os.environ.get("EMAIL_FROM", "")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD", "")
 EMAIL_TO       = os.environ.get("EMAIL_TO", "")
@@ -883,8 +886,6 @@ def run_market_scan(sector_data=None, sector_map=None):
                         r_chk["Close"] > max(r_chk["span_a"], r_chk["span_b"])):
                     continue
             entry = round(d_df["Close"].iloc[-1], 2)
-            fund_etf  = (sector_map or {}).get(ticker.upper(), "")
-            fund_cnt, fund_risks, fund_judge = check_fundamental(ticker, fund_etf)
             etf_code   = (sector_map or {}).get(ticker.upper(), "")
             trend_type = sector_data.get(etf_code, {}).get("trend_type", "미분류") if sector_data else "미분류"
             fund_cnt, fund_risks, fund_judge = check_fundamental(ticker, etf_code)
