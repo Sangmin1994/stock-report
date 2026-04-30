@@ -1026,10 +1026,11 @@ def run_portfolio_update(sector_map=None, sector_data=None):
             fund_ok = "✅" in fund_judge
 
             try:
-                memo = str(row["memo"]).strip() if pd.notna(row.get("memo", "")) else ""
+                memo_val = row["memo"] if "memo" in portfolio.columns else ""
+                memo = str(memo_val).strip() if pd.notna(memo_val) and str(memo_val) != "nan" else ""
             except:
                 memo = ""
-
+            
             if "재진입대기" in memo:
                 if sig_cnt >= 3 and ws >= 2:
                     status = "🟣 재진입 신호 발생 — 매수 검토"
