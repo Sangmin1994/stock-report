@@ -1,0 +1,22 @@
+# Google 서비스 계정 키 (절대 커밋 금지)
+*.json
+!sector_map_cache.json
+!sector_map_industry.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter 임시 파일
+.ipynb_checkpoints/
+*.ipynb.bak
+
+# 로그
+logs/
+
+# 이미지 (용량 절약)
+*.png
+
+# 데이터 파일 (선택적 — 커밋하려면 이 줄 삭제)
+# *.csv

@@ -1,0 +1,11 @@
+yfinance>=0.2.0
+ta
+numpy
+pandas
+requests
+gspread
+google-auth
+matplotlib
+jupyter
+nbconvert
+ipykernel

@@ -1,0 +1,67 @@
+name: Daily Stock Scanner
+
+on:
+  schedule:
+    # KST 기준 평일 오전 10:10 = UTC 01:10 (화~토 실행, 월요일 = 미국 전 거래일 결과)
+    - cron: '10 1 * * 2-6'
+  workflow_dispatch:  # GitHub에서 수동 실행 버튼
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180  # 노트북 실행 최대 3시간
+
+    permissions:
+      contents: write  # 결과 CSV 커밋용
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: requirements_actions.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements_actions.txt
+
+      - name: Set up Google Sheets credentials
+        # GSHEET_KEY_JSON 시크릿에 JSON 파일 내용을 통째로 붙여넣기
+        env:
+          GSHEET_KEY_JSON: ${{ secrets.GSHEET_KEY_JSON }}
+        run: |
+          if [ -n "$GSHEET_KEY_JSON" ]; then
+            echo "$GSHEET_KEY_JSON" > stately-transit-494900-i8-524c44e2e62d.json
+            echo "Google 인증 파일 생성 완료"
+          else
+            echo "GSHEET_KEY_JSON 시크릿 없음 — Google Sheets 연동 생략"
+          fi
+
+      - name: Run scanner & send Telegram notification
+        env:
+          TELEGRAM_TOKEN:   ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GSHEET_ID:        ${{ secrets.GSHEET_ID }}
+        run: |
+          cd $GITHUB_WORKSPACE
+          python run_and_notify.py
+
+      - name: Commit scan results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # 결과 파일만 선택적으로 추가 (민감 파일 제외)
+          git add scan_result_*.csv portfolio_update_*.csv portfolio.csv \
+                  scanner_portpolio_v4.ipynb 2>/dev/null || true
+          # 변경사항이 있을 때만 커밋
+          if git diff --staged --quiet; then
+            echo "커밋할 변경사항 없음"
+          else
+            git commit -m "chore: auto scan $(date +%Y-%m-%d)"
+            git push
+          fi
