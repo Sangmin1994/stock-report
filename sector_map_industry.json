@@ -1,0 +1,2066 @@
+{
+  "KO": {
+    "sector": "XLP",
+    "industry": "Beverages - Non-Alcoholic"
+  },
+  "KIM": {
+    "sector": "XLRE",
+    "industry": "REIT - Retail"
+  },
+  "AOS": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "SWKS": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "DHI": {
+    "sector": "XLY",
+    "industry": "Residential Construction"
+  },
+  "CTVA": {
+    "sector": "XLB",
+    "industry": "Agricultural Inputs"
+  },
+  "DPZ": {
+    "sector": "XLY",
+    "industry": "Restaurants"
+  },
+  "SYF": {
+    "sector": "XLF",
+    "industry": "Credit Services"
+  },
+  "CFG": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "MELI": {
+    "sector": "XLY",
+    "industry": "Internet Retail"
+  },
+  "SW": {
+    "sector": "XLY",
+    "industry": "Packaging & Containers"
+  },
+  "MSTR": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "IR": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "COO": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "FOXA": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "MLM": {
+    "sector": "XLB",
+    "industry": "Building Materials"
+  },
+  "MAS": {
+    "sector": "XLI",
+    "industry": "Building Products & Equipment"
+  },
+  "AEE": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "EL": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "TJX": {
+    "sector": "XLY",
+    "industry": "Apparel Retail"
+  },
+  "C": {
+    "sector": "XLF",
+    "industry": "Banks - Diversified"
+  },
+  "HUBB": {
+    "sector": "XLI",
+    "industry": "Electrical Equipment & Parts"
+  },
+  "CME": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "KHC": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "NOW": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "GNRC": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "MA": {
+    "sector": "XLF",
+    "industry": "Credit Services"
+  },
+  "CNC": {
+    "sector": "XLV",
+    "industry": "Healthcare Plans"
+  },
+  "JCI": {
+    "sector": "XLI",
+    "industry": "Building Products & Equipment"
+  },
+  "LRCX": {
+    "sector": "XLK",
+    "industry": "Semiconductor Equipment & Materials"
+  },
+  "AIZ": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "SHW": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "GDDY": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "AMZN": {
+    "sector": "XLY",
+    "industry": "Internet Retail"
+  },
+  "ON": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "SNDK": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "ADBE": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "AMCR": {
+    "sector": "XLY",
+    "industry": "Packaging & Containers"
+  },
+  "SHOP": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "WRB": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "YUM": {
+    "sector": "XLY",
+    "industry": "Restaurants"
+  },
+  "HD": {
+    "sector": "XLY",
+    "industry": "Home Improvement Retail"
+  },
+  "JPM": {
+    "sector": "XLF",
+    "industry": "Banks - Diversified"
+  },
+  "WY": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "IFF": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "GEV": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "BLK": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "MMM": {
+    "sector": "XLI",
+    "industry": "Conglomerates"
+  },
+  "PNW": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "ULTA": {
+    "sector": "XLY",
+    "industry": "Specialty Retail"
+  },
+  "LITE": {
+    "sector": "XLK",
+    "industry": "Communication Equipment"
+  },
+  "ZS": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "ALGN": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "LEN": {
+    "sector": "XLY",
+    "industry": "Residential Construction"
+  },
+  "NRG": {
+    "sector": "XLU",
+    "industry": "Utilities - Independent Power Producers"
+  },
+  "BDX": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "FSLR": {
+    "sector": "XLK",
+    "industry": "Solar"
+  },
+  "VRSK": {
+    "sector": "XLI",
+    "industry": "Consulting Services"
+  },
+  "CMS": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "PNR": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "EXC": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "EIX": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "SBAC": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "CHTR": {
+    "sector": "XLC",
+    "industry": "Telecom Services"
+  },
+  "WMB": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Midstream"
+  },
+  "MET": {
+    "sector": "XLF",
+    "industry": "Insurance - Life"
+  },
+  "AKAM": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "FIS": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "BX": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "ZTS": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - Specialty & Generic"
+  },
+  "DDOG": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "CI": {
+    "sector": "XLV",
+    "industry": "Healthcare Plans"
+  },
+  "HRL": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "LII": {
+    "sector": "XLI",
+    "industry": "Building Products & Equipment"
+  },
+  "HON": {
+    "sector": "XLI",
+    "industry": "Conglomerates"
+  },
+  "NCLH": {
+    "sector": "XLY",
+    "industry": "Travel Services"
+  },
+  "CL": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "JBHT": {
+    "sector": "XLI",
+    "industry": "Integrated Freight & Logistics"
+  },
+  "AVB": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "INCY": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "ALL": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "DXCM": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "CB": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "MO": {
+    "sector": "XLP",
+    "industry": "Tobacco"
+  },
+  "FANG": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "SNA": {
+    "sector": "XLI",
+    "industry": "Tools & Accessories"
+  },
+  "BRK-B": {
+    "sector": "XLF",
+    "industry": "Insurance - Diversified"
+  },
+  "TSLA": {
+    "sector": "XLY",
+    "industry": "Auto Manufacturers"
+  },
+  "IBKR": {
+    "sector": "XLF",
+    "industry": "Capital Markets"
+  },
+  "ABNB": {
+    "sector": "XLY",
+    "industry": "Travel Services"
+  },
+  "CF": {
+    "sector": "XLB",
+    "industry": "Agricultural Inputs"
+  },
+  "WBD": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "EG": {
+    "sector": "XLF",
+    "industry": "Insurance - Reinsurance"
+  },
+  "REGN": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "INVH": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "PM": {
+    "sector": "XLP",
+    "industry": "Tobacco"
+  },
+  "STE": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "WDC": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "GD": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "EXR": {
+    "sector": "XLRE",
+    "industry": "REIT - Industrial"
+  },
+  "ADP": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "ROP": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "MCK": {
+    "sector": "XLV",
+    "industry": "Medical Distribution"
+  },
+  "BA": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "SLB": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Equipment & Services"
+  },
+  "PFE": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "KVUE": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "FITB": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "RCL": {
+    "sector": "XLY",
+    "industry": "Travel Services"
+  },
+  "NWSA": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "TECH": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "DG": {
+    "sector": "XLP",
+    "industry": "Discount Stores"
+  },
+  "LUV": {
+    "sector": "XLI",
+    "industry": "Airlines"
+  },
+  "EPAM": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "GEHC": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "TTWO": {
+    "sector": "XLC",
+    "industry": "Electronic Gaming & Multimedia"
+  },
+  "CRM": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "TDY": {
+    "sector": "XLK",
+    "industry": "Scientific & Technical Instruments"
+  },
+  "GRMN": {
+    "sector": "XLK",
+    "industry": "Scientific & Technical Instruments"
+  },
+  "ISRG": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "CHD": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "PPL": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "EXE": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "HLT": {
+    "sector": "XLY",
+    "industry": "Lodging"
+  },
+  "ABBV": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "CPT": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "APP": {
+    "sector": "XLC",
+    "industry": "Advertising Agencies"
+  },
+  "QCOM": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "AAPL": {
+    "sector": "XLK",
+    "industry": "Consumer Electronics"
+  },
+  "ADM": {
+    "sector": "XLP",
+    "industry": "Farm Products"
+  },
+  "SYK": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "PDD": {
+    "sector": "XLY",
+    "industry": "Internet Retail"
+  },
+  "DLR": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "FAST": {
+    "sector": "XLI",
+    "industry": "Industrial Distribution"
+  },
+  "WSM": {
+    "sector": "XLY",
+    "industry": "Specialty Retail"
+  },
+  "BKR": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Equipment & Services"
+  },
+  "MKC": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "USB": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "NDAQ": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "NTRS": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "CTRA": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "AME": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "ACN": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "VLTO": {
+    "sector": "XLI",
+    "industry": "Pollution & Treatment Controls"
+  },
+  "FER": {
+    "sector": "XLI",
+    "industry": "Engineering & Construction"
+  },
+  "STZ": {
+    "sector": "XLP",
+    "industry": "Beverages - Brewers"
+  },
+  "EA": {
+    "sector": "XLC",
+    "industry": "Electronic Gaming & Multimedia"
+  },
+  "KR": {
+    "sector": "XLP",
+    "industry": "Grocery Stores"
+  },
+  "CPRT": {
+    "sector": "XLI",
+    "industry": "Specialty Business Services"
+  },
+  "SOLV": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "DGX": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "SYY": {
+    "sector": "XLP",
+    "industry": "Food Distribution"
+  },
+  "VZ": {
+    "sector": "XLC",
+    "industry": "Telecom Services"
+  },
+  "CVNA": {
+    "sector": "XLY",
+    "industry": "Auto & Truck Dealerships"
+  },
+  "HSY": {
+    "sector": "XLP",
+    "industry": "Confectioners"
+  },
+  "JBL": {
+    "sector": "XLK",
+    "industry": "Electronic Components"
+  },
+  "BSX": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "CRH": {
+    "sector": "XLB",
+    "industry": "Building Materials"
+  },
+  "MTB": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "ITW": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "FICO": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "CAH": {
+    "sector": "XLV",
+    "industry": "Medical Distribution"
+  },
+  "VRT": {
+    "sector": "XLI",
+    "industry": "Electrical Equipment & Parts"
+  },
+  "ARES": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "TEL": {
+    "sector": "XLK",
+    "industry": "Electronic Components"
+  },
+  "PYPL": {
+    "sector": "XLF",
+    "industry": "Credit Services"
+  },
+  "AES": {
+    "sector": "XLU",
+    "industry": "Utilities - Diversified"
+  },
+  "APD": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "IT": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "EOG": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "HBAN": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "KMI": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Midstream"
+  },
+  "DHR": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "DOV": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "EVRG": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "MAA": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "CSX": {
+    "sector": "XLI",
+    "industry": "Railroads"
+  },
+  "CPAY": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "TXN": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "CNP": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "HSIC": {
+    "sector": "XLV",
+    "industry": "Medical Distribution"
+  },
+  "VRSN": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "TPL": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "TSN": {
+    "sector": "XLP",
+    "industry": "Farm Products"
+  },
+  "PCAR": {
+    "sector": "XLI",
+    "industry": "Farm & Heavy Construction Machinery"
+  },
+  "FIX": {
+    "sector": "XLI",
+    "industry": "Engineering & Construction"
+  },
+  "ESS": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "NUE": {
+    "sector": "XLB",
+    "industry": "Steel"
+  },
+  "LNT": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "COHR": {
+    "sector": "XLK",
+    "industry": "Scientific & Technical Instruments"
+  },
+  "HAS": {
+    "sector": "XLY",
+    "industry": "Leisure"
+  },
+  "PHM": {
+    "sector": "XLY",
+    "industry": "Residential Construction"
+  },
+  "MNST": {
+    "sector": "XLP",
+    "industry": "Beverages - Non-Alcoholic"
+  },
+  "AIG": {
+    "sector": "XLF",
+    "industry": "Insurance - Diversified"
+  },
+  "CDNS": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "NTAP": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "ED": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "DOC": {
+    "sector": "XLRE",
+    "industry": "REIT - Healthcare Facilities"
+  },
+  "XOM": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Integrated"
+  },
+  "PSKY": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "MSI": {
+    "sector": "XLK",
+    "industry": "Communication Equipment"
+  },
+  "MCHP": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "LULU": {
+    "sector": "XLY",
+    "industry": "Apparel Retail"
+  },
+  "EME": {
+    "sector": "XLI",
+    "industry": "Engineering & Construction"
+  },
+  "ROK": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "VST": {
+    "sector": "XLU",
+    "industry": "Utilities - Independent Power Producers"
+  },
+  "ANET": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "CHRW": {
+    "sector": "XLI",
+    "industry": "Integrated Freight & Logistics"
+  },
+  "BALL": {
+    "sector": "XLY",
+    "industry": "Packaging & Containers"
+  },
+  "ERIE": {
+    "sector": "XLF",
+    "industry": "Insurance Brokers"
+  },
+  "ALNY": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "APA": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "HIG": {
+    "sector": "XLF",
+    "industry": "Insurance - Diversified"
+  },
+  "RMD": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "REG": {
+    "sector": "XLRE",
+    "industry": "REIT - Retail"
+  },
+  "PH": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "PWR": {
+    "sector": "XLI",
+    "industry": "Engineering & Construction"
+  },
+  "SMCI": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "GWW": {
+    "sector": "XLI",
+    "industry": "Industrial Distribution"
+  },
+  "ASML": {
+    "sector": "XLK",
+    "industry": "Semiconductor Equipment & Materials"
+  },
+  "PKG": {
+    "sector": "XLY",
+    "industry": "Packaging & Containers"
+  },
+  "NFLX": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "IEX": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "AMD": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "EXPE": {
+    "sector": "XLY",
+    "industry": "Travel Services"
+  },
+  "CLX": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "MRSH": {
+    "sector": "XLF",
+    "industry": "Insurance Brokers"
+  },
+  "FTV": {
+    "sector": "XLK",
+    "industry": "Scientific & Technical Instruments"
+  },
+  "XEL": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "COST": {
+    "sector": "XLP",
+    "industry": "Discount Stores"
+  },
+  "WMT": {
+    "sector": "XLP",
+    "industry": "Discount Stores"
+  },
+  "POOL": {
+    "sector": "XLI",
+    "industry": "Industrial Distribution"
+  },
+  "UHS": {
+    "sector": "XLV",
+    "industry": "Medical Care Facilities"
+  },
+  "TPR": {
+    "sector": "XLY",
+    "industry": "Luxury Goods"
+  },
+  "WM": {
+    "sector": "XLI",
+    "industry": "Waste Management"
+  },
+  "EMR": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "TAP": {
+    "sector": "XLP",
+    "industry": "Beverages - Brewers"
+  },
+  "CBRE": {
+    "sector": "XLRE",
+    "industry": "Real Estate Services"
+  },
+  "IVZ": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "PCG": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "GPC": {
+    "sector": "XLY",
+    "industry": "Auto Parts"
+  },
+  "HST": {
+    "sector": "XLRE",
+    "industry": "REIT - Hotel & Motel"
+  },
+  "MPC": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Refining & Marketing"
+  },
+  "DRI": {
+    "sector": "XLY",
+    "industry": "Restaurants"
+  },
+  "BAC": {
+    "sector": "XLF",
+    "industry": "Banks - Diversified"
+  },
+  "TFC": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "MS": {
+    "sector": "XLF",
+    "industry": "Capital Markets"
+  },
+  "ALLE": {
+    "sector": "XLI",
+    "industry": "Security & Protection Services"
+  },
+  "CASY": {
+    "sector": "XLY",
+    "industry": "Specialty Retail"
+  },
+  "MOS": {
+    "sector": "XLB",
+    "industry": "Agricultural Inputs"
+  },
+  "ADI": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "UPS": {
+    "sector": "XLI",
+    "industry": "Integrated Freight & Logistics"
+  },
+  "CMCSA": {
+    "sector": "XLC",
+    "industry": "Telecom Services"
+  },
+  "CSGP": {
+    "sector": "XLRE",
+    "industry": "Real Estate Services"
+  },
+  "COR": {
+    "sector": "XLV",
+    "industry": "Medical Distribution"
+  },
+  "AXON": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "GL": {
+    "sector": "XLF",
+    "industry": "Insurance - Life"
+  },
+  "CARR": {
+    "sector": "XLI",
+    "industry": "Building Products & Equipment"
+  },
+  "TRI": {
+    "sector": "XLI",
+    "industry": "Specialty Business Services"
+  },
+  "ICE": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "BK": {
+    "sector": "XLF",
+    "industry": "Banks - Diversified"
+  },
+  "CAT": {
+    "sector": "XLI",
+    "industry": "Farm & Heavy Construction Machinery"
+  },
+  "OMC": {
+    "sector": "XLC",
+    "industry": "Advertising Agencies"
+  },
+  "VRTX": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "SNPS": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "RL": {
+    "sector": "XLY",
+    "industry": "Apparel Manufacturing"
+  },
+  "CEG": {
+    "sector": "XLU",
+    "industry": "Utilities - Independent Power Producers"
+  },
+  "CIEN": {
+    "sector": "XLK",
+    "industry": "Communication Equipment"
+  },
+  "SPGI": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "TSCO": {
+    "sector": "XLY",
+    "industry": "Specialty Retail"
+  },
+  "STT": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "COIN": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "DIS": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "ELV": {
+    "sector": "XLV",
+    "industry": "Healthcare Plans"
+  },
+  "OXY": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "EW": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "CSCO": {
+    "sector": "XLK",
+    "industry": "Communication Equipment"
+  },
+  "GIS": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "PRU": {
+    "sector": "XLF",
+    "industry": "Insurance - Life"
+  },
+  "GS": {
+    "sector": "XLF",
+    "industry": "Capital Markets"
+  },
+  "FCX": {
+    "sector": "XLB",
+    "industry": "Copper"
+  },
+  "HUM": {
+    "sector": "XLV",
+    "industry": "Healthcare Plans"
+  },
+  "LVS": {
+    "sector": "XLY",
+    "industry": "Resorts & Casinos"
+  },
+  "NEE": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "OKE": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Midstream"
+  },
+  "DTE": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "SBUX": {
+    "sector": "XLY",
+    "industry": "Restaurants"
+  },
+  "PG": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "TXT": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "GOOG": {
+    "sector": "XLC",
+    "industry": "Internet Content & Information"
+  },
+  "BBY": {
+    "sector": "XLY",
+    "industry": "Specialty Retail"
+  },
+  "MCD": {
+    "sector": "XLY",
+    "industry": "Restaurants"
+  },
+  "MCO": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "BXP": {
+    "sector": "XLRE",
+    "industry": "REIT - Office"
+  },
+  "DD": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "META": {
+    "sector": "XLC",
+    "industry": "Internet Content & Information"
+  },
+  "ARM": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "TGT": {
+    "sector": "XLP",
+    "industry": "Discount Stores"
+  },
+  "DECK": {
+    "sector": "XLY",
+    "industry": "Footwear & Accessories"
+  },
+  "FOX": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "JKHY": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "GE": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "IP": {
+    "sector": "XLY",
+    "industry": "Packaging & Containers"
+  },
+  "ODFL": {
+    "sector": "XLI",
+    "industry": "Trucking"
+  },
+  "EBAY": {
+    "sector": "XLY",
+    "industry": "Internet Retail"
+  },
+  "PSA": {
+    "sector": "XLRE",
+    "industry": "REIT - Industrial"
+  },
+  "T": {
+    "sector": "XLC",
+    "industry": "Telecom Services"
+  },
+  "GOOGL": {
+    "sector": "XLC",
+    "industry": "Internet Content & Information"
+  },
+  "GM": {
+    "sector": "XLY",
+    "industry": "Auto Manufacturers"
+  },
+  "J": {
+    "sector": "XLI",
+    "industry": "Engineering & Construction"
+  },
+  "ROST": {
+    "sector": "XLY",
+    "industry": "Apparel Retail"
+  },
+  "TER": {
+    "sector": "XLK",
+    "industry": "Semiconductor Equipment & Materials"
+  },
+  "RVTY": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "LLY": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "UNP": {
+    "sector": "XLI",
+    "industry": "Railroads"
+  },
+  "IRM": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "O": {
+    "sector": "XLRE",
+    "industry": "REIT - Retail"
+  },
+  "CCI": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "DLTR": {
+    "sector": "XLP",
+    "industry": "Discount Stores"
+  },
+  "AXP": {
+    "sector": "XLF",
+    "industry": "Credit Services"
+  },
+  "AMAT": {
+    "sector": "XLK",
+    "industry": "Semiconductor Equipment & Materials"
+  },
+  "APTV": {
+    "sector": "XLY",
+    "industry": "Auto Parts"
+  },
+  "AON": {
+    "sector": "XLF",
+    "industry": "Insurance Brokers"
+  },
+  "NDSN": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "GPN": {
+    "sector": "XLI",
+    "industry": "Specialty Business Services"
+  },
+  "ABT": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "Q": {
+    "sector": "XLK",
+    "industry": "Semiconductor Equipment & Materials"
+  },
+  "KLAC": {
+    "sector": "XLK",
+    "industry": "Semiconductor Equipment & Materials"
+  },
+  "ORCL": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "BMY": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "BEN": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "BIIB": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "PNC": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "WEC": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "CDW": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "CTSH": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "DASH": {
+    "sector": "XLY",
+    "industry": "Internet Retail"
+  },
+  "CRWD": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "TMO": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "DOW": {
+    "sector": "XLB",
+    "industry": "Chemicals"
+  },
+  "PEG": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "HAL": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Equipment & Services"
+  },
+  "BG": {
+    "sector": "XLP",
+    "industry": "Farm Products"
+  },
+  "MDLZ": {
+    "sector": "XLP",
+    "industry": "Confectioners"
+  },
+  "WELL": {
+    "sector": "XLRE",
+    "industry": "REIT - Healthcare Facilities"
+  },
+  "DE": {
+    "sector": "XLI",
+    "industry": "Farm & Heavy Construction Machinery"
+  },
+  "HPQ": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "ROL": {
+    "sector": "XLY",
+    "industry": "Personal Services"
+  },
+  "RSG": {
+    "sector": "XLI",
+    "industry": "Waste Management"
+  },
+  "BLDR": {
+    "sector": "XLI",
+    "industry": "Building Products & Equipment"
+  },
+  "PLD": {
+    "sector": "XLRE",
+    "industry": "REIT - Industrial"
+  },
+  "DVN": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "IDXX": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "PLTR": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "AMP": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "INTC": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "TYL": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "BF-B": {
+    "sector": "XLP",
+    "industry": "Beverages - Wineries & Distilleries"
+  },
+  "AZO": {
+    "sector": "XLY",
+    "industry": "Auto Parts"
+  },
+  "VMC": {
+    "sector": "XLB",
+    "industry": "Building Materials"
+  },
+  "TRGP": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Midstream"
+  },
+  "NKE": {
+    "sector": "XLY",
+    "industry": "Footwear & Accessories"
+  },
+  "SJM": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "APH": {
+    "sector": "XLK",
+    "industry": "Electronic Components"
+  },
+  "NVR": {
+    "sector": "XLY",
+    "industry": "Residential Construction"
+  },
+  "COP": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "LMT": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "MRVL": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "PANW": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "CVX": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Integrated"
+  },
+  "LH": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "WYNN": {
+    "sector": "XLY",
+    "industry": "Resorts & Casinos"
+  },
+  "BKNG": {
+    "sector": "XLY",
+    "industry": "Travel Services"
+  },
+  "DAL": {
+    "sector": "XLI",
+    "industry": "Airlines"
+  },
+  "SATS": {
+    "sector": "XLC",
+    "industry": "Telecom Services"
+  },
+  "CPB": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "ADSK": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "MAR": {
+    "sector": "XLY",
+    "industry": "Lodging"
+  },
+  "PPG": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "EQT": {
+    "sector": "XLE",
+    "industry": "Oil & Gas E&P"
+  },
+  "TRV": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "KEY": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "TMUS": {
+    "sector": "XLC",
+    "industry": "Telecom Services"
+  },
+  "PODD": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "KKR": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "ACGL": {
+    "sector": "XLF",
+    "industry": "Insurance - Diversified"
+  },
+  "AVGO": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "CCL": {
+    "sector": "XLY",
+    "industry": "Travel Services"
+  },
+  "MU": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "ECL": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "KMB": {
+    "sector": "XLP",
+    "industry": "Household & Personal Products"
+  },
+  "HII": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "HWM": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "WAB": {
+    "sector": "XLI",
+    "industry": "Railroads"
+  },
+  "LDOS": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "LYB": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "BR": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "XYZ": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "EQIX": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "MTD": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "RTX": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "CBOE": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "FE": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "AJG": {
+    "sector": "XLF",
+    "industry": "Insurance Brokers"
+  },
+  "ALB": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "UBER": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "F": {
+    "sector": "XLY",
+    "industry": "Auto Manufacturers"
+  },
+  "CINF": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "AVY": {
+    "sector": "XLY",
+    "industry": "Packaging & Containers"
+  },
+  "HCA": {
+    "sector": "XLV",
+    "industry": "Medical Care Facilities"
+  },
+  "V": {
+    "sector": "XLF",
+    "industry": "Credit Services"
+  },
+  "UDR": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "VLO": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Refining & Marketing"
+  },
+  "WST": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "A": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "MDT": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "DUK": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "ZBRA": {
+    "sector": "XLK",
+    "industry": "Communication Equipment"
+  },
+  "WAT": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "VTR": {
+    "sector": "XLRE",
+    "industry": "REIT - Healthcare Facilities"
+  },
+  "CMG": {
+    "sector": "XLY",
+    "industry": "Restaurants"
+  },
+  "TKO": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "NI": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Gas"
+  },
+  "ATO": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Gas"
+  },
+  "STLD": {
+    "sector": "XLB",
+    "industry": "Steel"
+  },
+  "TROW": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "PFG": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "ETR": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "VTRS": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - Specialty & Generic"
+  },
+  "CTAS": {
+    "sector": "XLI",
+    "industry": "Specialty Business Services"
+  },
+  "GLW": {
+    "sector": "XLK",
+    "industry": "Electronic Components"
+  },
+  "HPE": {
+    "sector": "XLK",
+    "industry": "Communication Equipment"
+  },
+  "INTU": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "SO": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "AMGN": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "PEP": {
+    "sector": "XLP",
+    "industry": "Beverages - Non-Alcoholic"
+  },
+  "IBM": {
+    "sector": "XLK",
+    "industry": "Information Technology Services"
+  },
+  "FTNT": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "NXPI": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "NWS": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "WFC": {
+    "sector": "XLF",
+    "industry": "Banks - Diversified"
+  },
+  "ES": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "GEN": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "XYL": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "TRMB": {
+    "sector": "XLK",
+    "industry": "Scientific & Technical Instruments"
+  },
+  "SCHW": {
+    "sector": "XLF",
+    "industry": "Capital Markets"
+  },
+  "GILD": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "PSX": {
+    "sector": "XLE",
+    "industry": "Oil & Gas Refining & Marketing"
+  },
+  "LYV": {
+    "sector": "XLC",
+    "industry": "Entertainment"
+  },
+  "OTIS": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "STX": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "MGM": {
+    "sector": "XLY",
+    "industry": "Resorts & Casinos"
+  },
+  "NEM": {
+    "sector": "XLB",
+    "industry": "Gold"
+  },
+  "ORLY": {
+    "sector": "XLY",
+    "industry": "Auto Parts"
+  },
+  "AMT": {
+    "sector": "XLRE",
+    "industry": "REIT - Specialty"
+  },
+  "UNH": {
+    "sector": "XLV",
+    "industry": "Healthcare Plans"
+  },
+  "MRNA": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "BAX": {
+    "sector": "XLV",
+    "industry": "Medical Instruments & Supplies"
+  },
+  "WTW": {
+    "sector": "XLF",
+    "industry": "Insurance Brokers"
+  },
+  "IQV": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "APO": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "AFL": {
+    "sector": "XLF",
+    "industry": "Insurance - Life"
+  },
+  "RJF": {
+    "sector": "XLF",
+    "industry": "Asset Management"
+  },
+  "COF": {
+    "sector": "XLF",
+    "industry": "Credit Services"
+  },
+  "HOOD": {
+    "sector": "XLF",
+    "industry": "Capital Markets"
+  },
+  "EQR": {
+    "sector": "XLRE",
+    "industry": "REIT - Residential"
+  },
+  "FDS": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "NSC": {
+    "sector": "XLI",
+    "industry": "Railroads"
+  },
+  "SWK": {
+    "sector": "XLI",
+    "industry": "Tools & Accessories"
+  },
+  "TDG": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "FRT": {
+    "sector": "XLRE",
+    "industry": "REIT - Retail"
+  },
+  "MPWR": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "DELL": {
+    "sector": "XLK",
+    "industry": "Computer Hardware"
+  },
+  "KDP": {
+    "sector": "XLP",
+    "industry": "Beverages - Non-Alcoholic"
+  },
+  "LHX": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "PAYX": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "MSFT": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "BRO": {
+    "sector": "XLF",
+    "industry": "Insurance Brokers"
+  },
+  "CRL": {
+    "sector": "XLV",
+    "industry": "Diagnostics & Research"
+  },
+  "TTD": {
+    "sector": "XLC",
+    "industry": "Advertising Agencies"
+  },
+  "NOC": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  },
+  "VICI": {
+    "sector": "XLRE",
+    "industry": "REIT - Diversified"
+  },
+  "CAG": {
+    "sector": "XLP",
+    "industry": "Packaged Foods"
+  },
+  "LOW": {
+    "sector": "XLY",
+    "industry": "Home Improvement Retail"
+  },
+  "UAL": {
+    "sector": "XLI",
+    "industry": "Airlines"
+  },
+  "ZBH": {
+    "sector": "XLV",
+    "industry": "Medical Devices"
+  },
+  "AEP": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "ETN": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "PTC": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "RF": {
+    "sector": "XLF",
+    "industry": "Banks - Regional"
+  },
+  "WDAY": {
+    "sector": "XLK",
+    "industry": "Software - Application"
+  },
+  "L": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "FFIV": {
+    "sector": "XLK",
+    "industry": "Software - Infrastructure"
+  },
+  "URI": {
+    "sector": "XLI",
+    "industry": "Rental & Leasing Services"
+  },
+  "DVA": {
+    "sector": "XLV",
+    "industry": "Medical Care Facilities"
+  },
+  "KEYS": {
+    "sector": "XLK",
+    "industry": "Scientific & Technical Instruments"
+  },
+  "SRE": {
+    "sector": "XLU",
+    "industry": "Utilities - Diversified"
+  },
+  "EFX": {
+    "sector": "XLI",
+    "industry": "Consulting Services"
+  },
+  "SPG": {
+    "sector": "XLRE",
+    "industry": "REIT - Retail"
+  },
+  "D": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Electric"
+  },
+  "EXPD": {
+    "sector": "XLI",
+    "industry": "Integrated Freight & Logistics"
+  },
+  "CVS": {
+    "sector": "XLV",
+    "industry": "Healthcare Plans"
+  },
+  "CMI": {
+    "sector": "XLI",
+    "industry": "Specialty Industrial Machinery"
+  },
+  "MSCI": {
+    "sector": "XLF",
+    "industry": "Financial Data & Stock Exchanges"
+  },
+  "TT": {
+    "sector": "XLI",
+    "industry": "Building Products & Equipment"
+  },
+  "NVDA": {
+    "sector": "XLK",
+    "industry": "Semiconductors"
+  },
+  "LIN": {
+    "sector": "XLB",
+    "industry": "Specialty Chemicals"
+  },
+  "MRK": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "ARE": {
+    "sector": "XLRE",
+    "industry": "REIT - Office"
+  },
+  "CCEP": {
+    "sector": "XLP",
+    "industry": "Beverages - Non-Alcoholic"
+  },
+  "PGR": {
+    "sector": "XLF",
+    "industry": "Insurance - Property & Casualty"
+  },
+  "FDX": {
+    "sector": "XLI",
+    "industry": "Integrated Freight & Logistics"
+  },
+  "JNJ": {
+    "sector": "XLV",
+    "industry": "Drug Manufacturers - General"
+  },
+  "AWK": {
+    "sector": "XLU",
+    "industry": "Utilities - Regulated Water"
+  },
+  "INSM": {
+    "sector": "XLV",
+    "industry": "Biotechnology"
+  },
+  "RKLB": {
+    "sector": "XLI",
+    "industry": "Aerospace & Defense"
+  }
+}
