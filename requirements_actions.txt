@@ -10,3 +10,4 @@ jupyter
 nbconvert
 ipykernel
 apscheduler
+lxml
