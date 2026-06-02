@@ -11,7 +11,7 @@ from datetime import datetime
 TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 
-MAX_LEN = 4000  # 텔레그램 최대 4096자
+MAX_LEN = 4000
 
 
 def _send_raw(text: str) -> bool:
@@ -64,9 +64,11 @@ def build_scan_report(today: str = None) -> str:
         df = df.sort_values(["_pri", "signals"], ascending=[True, False])
 
     date_str = f"{today[:4]}-{today[4:6]}-{today[6:]}"
+    total = len(df)
+
     lines = [
-        f"<b>📊 주식 스캔 결과 — {date_str}</b>",
-        f"총 신호 종목: <b>{len(df)}개</b>\n",
+        f"━━━━━━ 📊 주식 스캔 결과 ━━━━━━",
+        f"📅 {date_str}  |  총 <b>{total}종목</b> 신호\n",
     ]
 
     for _, r in df.head(10).iterrows():
@@ -74,7 +76,7 @@ def build_scan_report(today: str = None) -> str:
         if not isinstance(priority, str):
             priority = ""
         ticker   = r["ticker"]
-        price    = r["price"]
+        price    = float(r["price"])
         strategy = r.get("strategy", "—")
         trend    = r.get("trend_type", "—")
         sector   = str(r.get("sector", "—")).replace("<", "").replace(">", "")
@@ -82,16 +84,29 @@ def build_scan_report(today: str = None) -> str:
         target   = r.get("target", "")
         rr       = r.get("rr", "")
         sigs     = int(r.get("signals", 0))
-        growth   = r.get("growth_grade", "")
+        stop_pct = r.get("stop_pct", "")
+        tgt_pct  = r.get("target_pct", "")
+        industry = r.get("industry", "")
+
+        try:
+            stop_str = f"${stop} ({float(stop_pct):+.1f}%)"
+        except Exception:
+            stop_str = f"${stop}"
+        try:
+            tgt_str = f"${target} ({float(tgt_pct):+.1f}%)"
+        except Exception:
+            tgt_str = f"${target}"
 
         lines.append(
-            f"{priority} <b>{ticker}</b>  ${price:.2f}  [{strategy}전략]\n"
-            f"  섹터: {sector} | 추세: {trend} | 신호: {sigs}개 {growth}\n"
-            f"  손절: <code>${stop}</code>  목표: <code>${target}</code>  R/R {rr}\n"
+            f"┌ {priority} <b>{ticker}</b>  <code>${price:.2f}</code>  [{strategy}전략]\n"
+            f"│ 추세: {trend}  |  신호: {sigs}개  |  R/R {rr}\n"
+            f"│ 업종: {industry or sector}\n"
+            f"│ 🎯 목표: <code>{tgt_str}</code>\n"
+            f"└ 🛡 손절: <code>{stop_str}</code>\n"
         )
 
-    if len(df) > 10:
-        lines.append(f"… 외 {len(df) - 10}개 종목 (CSV 파일 참조)")
+    if total > 10:
+        lines.append(f"<i>… 외 {total - 10}개 종목 생략</i>")
 
     return "\n".join(lines)
 
@@ -108,28 +123,49 @@ def build_portfolio_report(today: str = None) -> str:
     df = pd.read_csv(csv_path, encoding="utf-8-sig")
 
     total_eval = df["eval_amt"].sum() if "eval_amt" in df.columns else 0
-    total_pnl  = df["pnl_amt"].sum()  if "pnl_amt"  in df.columns else 0
-    pnl_sign   = "📈" if total_pnl >= 0 else "📉"
-
     date_str = f"{today[:4]}-{today[4:6]}-{today[6:]}"
+
     lines = [
-        f"<b>💼 포트폴리오 현황 — {date_str}</b>",
-        f"평가금액: <b>${total_eval:,.0f}</b>  "
-        f"평가손익: <b>{pnl_sign} ${total_pnl:,.0f}</b>\n",
+        f"━━━━━━ 💼 포트폴리오 현황 ━━━━━━",
+        f"📅 {date_str}  |  총평가: <b>${total_eval:,.0f}</b>\n",
     ]
 
     for _, r in df.iterrows():
-        ticker   = r["ticker"]
-        pnl_pct  = float(r.get("pnl_pct", 0))
-        status   = r.get("status", "—")
-        icon     = "📈" if pnl_pct >= 0 else "📉"
-        stop_d   = r.get("stop_dist", "")
-        tgt_d    = r.get("target_dist", "")
+        ticker  = r["ticker"]
+        cur     = float(r.get("cur_price", 0))
+        status  = r.get("status", "—")
+        stop_d  = r.get("stop_dist", "")
+        tgt_d   = r.get("target_dist", "")
+        sigs    = r.get("signals", "")
+        weekly  = r.get("weekly", "")
+        sector  = str(r.get("sector", "")).replace("<", "").replace(">", "")
+
+        # 상태별 아이콘
+        if "손절" in str(status):
+            icon = "🔴"
+        elif "추가매수" in str(status):
+            icon = "🟣"
+        elif "약화" in str(status):
+            icon = "🔵"
+        elif "보유" in str(status):
+            icon = "⚪"
+        else:
+            icon = "🟡"
+
+        try:
+            stop_d_str = f"{float(stop_d):+.1f}%"
+        except Exception:
+            stop_d_str = str(stop_d)
+        try:
+            tgt_d_str = f"{float(tgt_d):+.1f}%"
+        except Exception:
+            tgt_d_str = str(tgt_d)
 
         lines.append(
-            f"{icon} <b>{ticker}</b>  {pnl_pct:+.2f}%\n"
-            f"  상태: {status}\n"
-            f"  손절까지: {stop_d}%  목표까지: {tgt_d}%\n"
+            f"┌ {icon} <b>{ticker}</b>  <code>${cur:.2f}</code>\n"
+            f"│ {status}\n"
+            f"│ 신호: {sigs}개  |  주봉: {weekly}  |  {sector}\n"
+            f"└ 🛡 손절 <code>{stop_d_str}</code>  🎯 목표 <code>{tgt_d_str}</code>\n"
         )
 
     return "\n".join(lines)
