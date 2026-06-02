@@ -1,20 +1,19 @@
 """
 GitHub Actions 실행 스크립트
 1. scanner_portpolio_v4.ipynb 실행 (jupyter nbconvert)
-2. 노트북의 텍스트 출력 전체를 섹션별로 텔레그램 전송
+2. 노트북 stdout 출력 전체를 섹션별로 텔레그램 전송
    (섹터/스캔/포트폴리오/가치사슬/실적 등 모든 리포트 포함)
 """
 import subprocess
 import sys
-import os
 import json
 import re
 from datetime import datetime
-from telegram_notify import send_message
+from telegram_notify import send_message, send_daily_report
 
 NB_PATH = "scanner_portpolio_v4.ipynb"
 TIMEOUT = 7200  # 초 (최대 2시간)
-MAX_CHARS = 3900  # 텔레그램 메시지 최대 길이 여유분
+MAX_CHARS = 3800
 
 
 def run_notebook() -> bool:
@@ -40,11 +39,8 @@ def run_notebook() -> bool:
     return True
 
 
-def extract_sections(nb_path: str) -> list:
-    """
-    실행된 노트북의 모든 stdout 텍스트를 추출하고
-    ===... 구분선 기준으로 섹션 분할
-    """
+def extract_notebook_text(nb_path: str) -> str:
+    """실행된 노트북에서 모든 텍스트 출력(stdout + display_data)을 추출"""
     with open(nb_path, "r", encoding="utf-8") as f:
         nb = json.load(f)
 
@@ -53,50 +49,62 @@ def extract_sections(nb_path: str) -> list:
         if cell["cell_type"] != "code":
             continue
         for output in cell.get("outputs", []):
-            if output.get("output_type") == "stream" and output.get("name") == "stdout":
+            otype = output.get("output_type", "")
+
+            # print() 출력
+            if otype == "stream" and output.get("name") == "stdout":
                 text = output.get("text", [])
-                if isinstance(text, list):
-                    text = "".join(text)
-                if text.strip():
-                    parts.append(text)
 
-    combined = "\n".join(parts)
+            # display(HTML(...)) 등 — text/plain 버전 사용
+            elif otype in ("display_data", "execute_result"):
+                text = output.get("data", {}).get("text/plain", [])
 
-    # ===== 40자 이상 구분선으로 섹션 분리
-    sections = re.split(r"={40,}", combined)
-    return [s.strip() for s in sections if s.strip()]
+            else:
+                continue
+
+            if isinstance(text, list):
+                text = "".join(text)
+            if text.strip():
+                parts.append(text.strip())
+
+    return "\n\n".join(parts)
 
 
-def send_report(nb_path: str) -> None:
-    """섹션별로 텔레그램 전송"""
-    sections = extract_sections(nb_path)
-    if not sections:
-        send_message("⚠️ 노트북 출력 내용이 없습니다. 노트북이 정상 실행됐는지 확인하세요.")
+def send_notebook_report(nb_path: str) -> None:
+    """노트북 출력을 섹션별로 분할해 텔레그램 전송"""
+    full_text = extract_notebook_text(nb_path)
+    if not full_text.strip():
+        print("[노트북] stdout 출력 없음 — CSV 기반 리포트만 전송")
         return
 
+    # 줄 시작의 ===... 구분선으로 섹션 분리 (들여쓰기된 ─── 행은 제외)
+    sections = re.split(r"(?m)^={40,}$", full_text)
+    sections = [s.strip() for s in sections if s.strip()]
+
+    if not sections:
+        print("[노트북] 섹션 구분선 없음 — 전체 텍스트를 통으로 전송")
+        sections = [full_text]
+
+    print(f"[노트북] {len(sections)}개 섹션 전송")
     for section in sections:
-        # HTML 특수문자 이스케이프 (<pre> 블록 안에서 필요)
         safe = (
             section
             .replace("&", "&amp;")
             .replace("<", "&lt;")
             .replace(">", "&gt;")
         )
-        # 너무 긴 섹션은 잘라서 전송
-        if len(safe) <= MAX_CHARS:
-            send_message(f"<pre>{safe}</pre>")
-        else:
-            # MAX_CHARS 단위로 분할
-            for i in range(0, len(safe), MAX_CHARS):
-                chunk = safe[i:i + MAX_CHARS]
-                send_message(f"<pre>{chunk}</pre>")
+        for i in range(0, len(safe), MAX_CHARS):
+            send_message(f"<pre>{safe[i:i + MAX_CHARS]}</pre>")
 
 
 if __name__ == "__main__":
     send_message("🔄 주식 스캔을 시작합니다…")
     ok = run_notebook()
     if ok:
-        send_report(NB_PATH)
+        # ① CSV 기반 리포트 (스캔 결과 + 포트폴리오)
+        send_daily_report()
+        # ② 노트북 출력 기반 리포트 (섹터/가치사슬/실적 등 전체)
+        send_notebook_report(NB_PATH)
         send_message("✅ 스캔 완료")
     else:
         send_message("❌ 스캔 실패 — GitHub Actions 로그를 확인하세요.")

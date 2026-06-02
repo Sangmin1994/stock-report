@@ -70,7 +70,9 @@ def build_scan_report(today: str = None) -> str:
     ]
 
     for _, r in df.head(10).iterrows():
-        priority = r.get("priority", "")
+        priority = r.get("priority", "") or ""
+        if not isinstance(priority, str):
+            priority = ""
         ticker   = r["ticker"]
         price    = r["price"]
         strategy = r.get("strategy", "—")
