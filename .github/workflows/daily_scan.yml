@@ -2,8 +2,8 @@ name: Daily Stock Scanner
 
 on:
   schedule:
-    # KST 기준 평일 오전 10:10 = UTC 01:10 (화~토 실행, 월요일 = 미국 전 거래일 결과)
-    - cron: '10 1 * * 2-6'
+    # KST 기준 화~토 오전 06:30 = UTC 월~금 21:30 (미국장 종료 후 — 써머타임/표준시 모두 커버)
+    - cron: '30 21 * * 1-5'
   workflow_dispatch:  # GitHub에서 수동 실행 버튼
 
 jobs:
