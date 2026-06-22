@@ -1,0 +1,62 @@
+name: Daily Stock Report
+
+on:
+  schedule:
+    - cron: '34 15 * * *'   # 매일 00:34 KST (= 15:34 UTC)
+  workflow_dispatch:          # 수동 실행 버튼
+
+jobs:
+  run-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Restore Google service account key
+        run: echo '${{ secrets.GSHEET_KEY_JSON }}' > stately-transit-494900-i8-524c44e2e62d.json
+
+      - name: Run notebook
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          GSHEET_ID: ${{ secrets.GSHEET_ID }}
+          GSHEET_KEY_FILE: stately-transit-494900-i8-524c44e2e62d.json
+        run: |
+          jupyter nbconvert --to notebook --execute \
+            --ExecutePreprocessor.timeout=3600 \
+            --ExecutePreprocessor.kernel_name=python3 \
+            --output scanner_portpolio_v4.ipynb \
+            scanner_portpolio_v4.ipynb
+
+      - name: Copy report to fixed filename
+        run: |
+          DATE=$(date +%Y%m%d)
+          cp report_${DATE}.html report.html
+          cat > index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="ko">
+          <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="refresh" content="0; url=report.html">
+          </head>
+          <body><a href="report.html">최신 리포트 보기</a></body>
+          </html>
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add report.html index.html
+          git add sector_map*.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "report: $(date +%Y-%m-%d)"
+          git push

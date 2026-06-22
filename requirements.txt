@@ -1,10 +1,13 @@
-yfinance
-ta
-numpy
+yfinance==0.2.51
 pandas
+numpy
 requests
+ta
 apscheduler
 gspread
 google-auth
+google-auth-oauthlib
 matplotlib
-streamlit
+nbconvert
+ipykernel
+jupyter
