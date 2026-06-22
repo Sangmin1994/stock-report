@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Report — 2026-06-22 17:51</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root {
+  --bg: #080b12; --surface: #0d1119; --panel: #111620; --border: #1e2535;
+  --text: #e2e8f0; --muted: #64748b; --dim: #94a3b8;
+  --blue: #4d9eff; --green: #15b98a; --yellow: #f5c842;
+  --pink: #ff5fa0; --red: #f87171; --purple: #a78bfa;
+  --glow-blue: 0 0 20px rgba(77,158,255,.18);
+  --glow-green: 0 0 20px rgba(21,185,138,.18);
+  --glow-yellow: 0 0 16px rgba(245,200,66,.15);
+  --radius: 12px; --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+  font-size: 14px; line-height: 1.6; min-height: 100vh;
+}
+.header {
+  background: linear-gradient(135deg, #0d1119 0%, #111620 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 32px; display: flex; align-items: center; justify-content: space-between;
+}
+.header h1 { font-size: 22px; font-weight: 700; color: var(--blue); letter-spacing: -0.5px; }
+.header .date { color: var(--muted); font-size: 13px; }
+.tabs { display: flex; gap: 4px; padding: 16px 32px 0;
+        border-bottom: 1px solid var(--border); background: var(--surface); }
+.tab-btn {
+  padding: 10px 20px; border: none; background: transparent;
+  color: var(--muted); font-size: 14px; font-weight: 500; cursor: pointer;
+  border-bottom: 2px solid transparent; transition: all .2s; border-radius: 4px 4px 0 0;
+  font-family: inherit;
+}
+.tab-btn:hover { color: var(--text); background: rgba(255,255,255,.04); }
+.tab-btn.active { color: var(--blue); border-bottom-color: var(--blue);
+                   background: rgba(77,158,255,.06); }
+.tab-content { display: none; padding: 28px 32px; }
+.tab-content.active { display: block; }
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 15px; font-weight: 700; color: var(--dim); letter-spacing: .5px;
+  text-transform: uppercase; margin-bottom: 16px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+/* Cards */
+.cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px 24px; flex: 1; min-width: 180px;
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+}
+.card.blue::before { background: linear-gradient(90deg, var(--blue), #7bb8ff); box-shadow: var(--glow-blue); }
+.card.green::before { background: linear-gradient(90deg, var(--green), #4dd8a8); box-shadow: var(--glow-green); }
+.card.yellow::before { background: linear-gradient(90deg, var(--yellow), #fde68a); box-shadow: var(--glow-yellow); }
+.card.purple::before { background: linear-gradient(90deg, var(--purple), #c4b5fd); }
+.card .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.card .value { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+.card .value.blue { color: var(--blue); }
+.card .value.green { color: var(--green); }
+.card .value.yellow { color: var(--yellow); }
+.card .value.purple { color: var(--purple); }
+.card .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+/* Table */
+.tbl-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #0a0e17; }
+th {
+  padding: 10px 14px; font-size: 11px; font-weight: 600; letter-spacing: .8px;
+  text-transform: uppercase; color: var(--muted); text-align: left;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+td {
+  padding: 11px 14px; font-size: 13px; border-bottom: 1px solid #131929;
+  white-space: nowrap; vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(77,158,255,.04); }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 11px; font-weight: 700;
+}
+.badge.buy { background: rgba(21,185,138,.15); color: var(--green); }
+.badge.hold { background: rgba(77,158,255,.15); color: var(--blue); }
+.badge.sell { background: rgba(248,113,113,.15); color: var(--red); }
+.badge.watch { background: rgba(245,200,66,.15); color: var(--yellow); }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+.neutral { color: var(--muted); }
+.bar-wrap { display: flex; align-items: center; gap: 8px; }
+.bar { height: 6px; border-radius: 3px; min-width: 4px; }
+/* Score circle */
+.score-circle {
+  width: 36px; height: 36px; border-radius: 50%; display: inline-flex;
+  align-items: center; justify-content: center; font-size: 12px; font-weight: 800;
+}
+.score-hi { background: rgba(21,185,138,.2); color: var(--green); border: 1px solid rgba(21,185,138,.4); }
+.score-mid { background: rgba(77,158,255,.2); color: var(--blue); border: 1px solid rgba(77,158,255,.4); }
+.score-lo { background: rgba(248,113,113,.2); color: var(--red); border: 1px solid rgba(248,113,113,.4); }
+/* Empty */
+.empty { padding: 48px; text-align: center; color: var(--muted); font-size: 14px; }
+@media (max-width: 768px) {
+  .header { padding: 16px; }
+  .tab-content { padding: 16px; }
+  .cards .card { min-width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>📊 Stock Dashboard</h1>
+    <div class="date">Daily Report · 2026-06-22 17:51</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="asset" onclick="switchTab('asset')">자산 현황</button>
+  <button class="tab-btn" data-tab="scan" onclick="switchTab('scan')">스캔 결과</button>
+  <button class="tab-btn" data-tab="port" onclick="switchTab('port')">포트폴리오</button>
+  <button class="tab-btn" data-tab="earn" onclick="switchTab('earn')">분기 실적</button>
+  <button class="tab-btn" data-tab="sector" onclick="switchTab('sector')">섹터</button>
+</div>
+
+<!-- TAB: 자산 -->
+<div id="tab-asset" class="tab-content active">
+  <div class="section">
+    <div class="cards">
+<div class="card blue">
+  <div class="label">총 자산</div>
+  <div class="value blue">3.39억</div>
+</div>
+<div class="card green">
+  <div class="label">주식</div>
+  <div class="value green">₩59,988,003</div>
+  <div class="sub">17.7% 비중</div>
+</div>
+<div class="card yellow">
+  <div class="label">현금·예적금</div>
+  <div class="value yellow">2.78억</div>
+  <div class="sub">81.9% 비중</div>
+</div>
+<div class="card purple">
+  <div class="label">원자재</div>
+  <div class="value purple">₩1,377,380</div>
+  <div class="sub">0.4% 비중</div>
+</div></div>
+    <h3 style="color:#1e293b;border-bottom:2px solid #1e293b;padding-bottom:6px;margin-top:20px">🏦 전체 자산 현황<small style="color:#6b7280;font-size:12px;font-weight:400;margin-left:8px">(2026-06-22 기준 | 단위: 원)</small></h3><div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px"><div style="flex:1;min-width:150px;background:#f0fdf4;border-radius:10px;padding:14px 18px;border-left:4px solid #16a34a;box-sizing:border-box"><div style="font-size:11px;color:#6b7280;margin-bottom:4px">💵 현금·예적금</div><div style="font-size:17px;font-weight:700;color:#1e293b">2.78억원</div><div style="font-size:11px;color:#16a34a;margin-top:2px">81.9%</div></div><div style="flex:1;min-width:150px;background:#fffbeb;border-radius:10px;padding:14px 18px;border-left:4px solid #d97706;box-sizing:border-box"><div style="font-size:11px;color:#6b7280;margin-bottom:4px">🥇 원자재</div><div style="font-size:17px;font-weight:700;color:#1e293b">138만원</div><div style="font-size:11px;color:#d97706;margin-top:2px">0.4%</div></div><div style="flex:1;min-width:150px;background:#faf5ff;border-radius:10px;padding:14px 18px;border-left:4px solid #7c3aed;box-sizing:border-box"><div style="font-size:11px;color:#6b7280;margin-bottom:4px">📈 주식</div><div style="font-size:17px;font-weight:700;color:#1e293b">5999만원</div><div style="font-size:11px;color:#7c3aed;margin-top:2px">17.7%</div></div><div style="flex:1;min-width:150px;background:#f1f5f9;border-radius:10px;padding:14px 18px;border-left:4px solid #1e40af;box-sizing:border-box"><div style="font-size:11px;color:#6b7280;margin-bottom:4px">🏦 총 자산</div><div style="font-size:17px;font-weight:700;color:#1e40af">3.39억원</div><div style="font-size:11px;color:#6b7280;margin-top:2px">100%</div></div></div><h4 style="color:#16a34a;margin:16px 0 6px;font-size:14px">💵 현금·예적금<span style="font-size:12px;color:#6b7280;font-weight:400;margin-left:8px">합계 2.78억원</span></h4><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:#f0fdf4"><th style="padding:8px 12px;text-align:left">구분</th><th style="padding:8px 12px;text-align:left">기관</th><th style="padding:8px 12px;text-align:center">이율</th><th style="padding:8px 12px;text-align:center">만기일</th><th style="padding:8px 12px;text-align:right">잔액 / 만기수령액</th></tr></thead><tbody><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px;color:#374151">개인_주거래통장</td><td style="padding:8px 12px;color:#6b7280">새마을금고</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩5,933,452</td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px;color:#374151">개인_전세자금</td><td style="padding:8px 12px;color:#6b7280">새마을금고</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩116,000,000</td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px;color:#374151">개인_CMA</td><td style="padding:8px 12px;color:#6b7280">미래에셋증권</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩0</td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px;color:#374151">개인_전세자금</td><td style="padding:8px 12px;color:#6b7280">새마을금고</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩3,600,000</td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px;color:#374151">개인_예수금</td><td style="padding:8px 12px;color:#6b7280">미래에셋증권</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;color:#6b7280">—</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩6,774,864</td></tr><tr style="border-bottom:1px solid #f1f5f9;background:#fafffe"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">예금</span></td><td style="padding:8px 12px;color:#6b7280">새마을금고</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2.35%</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2026-07-21</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩9,109,204</td></tr><tr style="border-bottom:1px solid #f1f5f9;background:#fafffe"><td style="padding:8px 12px"><span style="background:#dcfce7;color:#15803d;padding:1px 6px;border-radius:4px;font-size:10px">적금</span></td><td style="padding:8px 12px;color:#6b7280">새마을금고</td><td style="padding:8px 12px;color:#6b7280;text-align:center">4.10%</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2026-07-21</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩6,112,730</td></tr><tr style="border-bottom:1px solid #f1f5f9;background:#fafffe"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">예금</span></td><td style="padding:8px 12px;color:#6b7280">농협</td><td style="padding:8px 12px;color:#6b7280;text-align:center">0.00%</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2026-06-24</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩14,800,000</td></tr><tr style="border-bottom:1px solid #f1f5f9;background:#fafffe"><td style="padding:8px 12px"><span style="background:#dcfce7;color:#15803d;padding:1px 6px;border-radius:4px;font-size:10px">적금</span></td><td style="padding:8px 12px;color:#6b7280">국민은행</td><td style="padding:8px 12px;color:#6b7280;text-align:center">6.00%</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2026-08-30</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩3,698,982</td></tr><tr style="border-bottom:1px solid #f1f5f9;background:#fafffe"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">예금</span></td><td style="padding:8px 12px;color:#6b7280">새마을금고</td><td style="padding:8px 12px;color:#6b7280;text-align:center">0.00%</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2026-06-24</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩3,400,000</td></tr><tr style="border-bottom:1px solid #f1f5f9;background:#fafffe"><td style="padding:8px 12px"><span style="background:#dcfce7;color:#15803d;padding:1px 6px;border-radius:4px;font-size:10px">적금</span></td><td style="padding:8px 12px;color:#6b7280">우리은행</td><td style="padding:8px 12px;color:#6b7280;text-align:center">5.00%</td><td style="padding:8px 12px;color:#6b7280;text-align:center">2027-01-24</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩6,137,475</td></tr></tbody></table><h4 style="color:#d97706;margin:16px 0 6px;font-size:14px">🥇 원자재<span style="font-size:12px;color:#6b7280;font-weight:400;margin-left:8px">합계 138만원</span></h4><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:#fffbeb"><th style="padding:8px 12px;text-align:left">종목명</th><th style="padding:8px 12px;text-align:right">보유량</th><th style="padding:8px 12px;text-align:right">매수총액</th></tr></thead><tbody><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px;font-weight:600">금 99.99_1kg</td><td style="padding:8px 12px;text-align:right">6개</td><td style="padding:8px 12px;text-align:right">₩1,377,380</td></tr></tbody></table><h4 style="color:#7c3aed;margin:16px 0 6px;font-size:14px">📈 주식<span style="font-size:12px;color:#6b7280;font-weight:400;margin-left:8px">합계 5999만원</span></h4><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:#faf5ff"><th style="padding:8px 12px;text-align:left">시장</th><th style="padding:8px 12px;text-align:left">종목명</th><th style="padding:8px 12px;text-align:right">보유량</th><th style="padding:8px 12px;text-align:right">평가금액</th><th style="padding:8px 12px;text-align:right">손익</th></tr></thead><tbody><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#e0f2fe;color:#0369a1;padding:1px 6px;border-radius:4px;font-size:10px">국내ETF</span></td><td style="padding:8px 12px;font-weight:600">S&P500 ETF (국내 합산)</td><td style="padding:8px 12px;text-align:right">379</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩10,828,030</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩1,724,643</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#e0f2fe;color:#0369a1;padding:1px 6px;border-radius:4px;font-size:10px">국내ETF</span></td><td style="padding:8px 12px;font-weight:600">나스닥100 ETF (국내 합산)</td><td style="padding:8px 12px;text-align:right">29</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩6,005,465</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩1,254,055</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#e0f2fe;color:#0369a1;padding:1px 6px;border-radius:4px;font-size:10px">국내ETF</span></td><td style="padding:8px 12px;font-weight:600">다우존스 ETF (국내 합산)</td><td style="padding:8px 12px;text-align:right">114</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,767,570</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩206,570</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">KODEX 미국AI전력핵심인프라</td><td style="padding:8px 12px;text-align:right">76</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩2,089,620</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩592,040</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">TIGER 글로벌AI&로보틱스 INDXX</td><td style="padding:8px 12px;text-align:right">79</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,297,180</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩51,271</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">ACE 미국빅테크TOP7 Plus</td><td style="padding:8px 12px;text-align:right">47</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,193,330</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩188,000</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">1Q 미국우주항공테크</td><td style="padding:8px 12px;text-align:right">59</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩790,895</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩36,285</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">KIWOOM 미국양자컴퓨팅</td><td style="padding:8px 12px;text-align:right">40</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩720,200</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩225,800</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">KODEX WTI원유선물인버스(H)</td><td style="padding:8px 12px;text-align:right">230</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩542,800</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩34,040</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#dbeafe;color:#1d4ed8;padding:1px 6px;border-radius:4px;font-size:10px">국내</span></td><td style="padding:8px 12px;font-weight:600">삼성전자</td><td style="padding:8px 12px;text-align:right">0</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩0</td><td style="padding:8px 12px;text-align:right"></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">로켓 랩 레버리지</td><td style="padding:8px 12px;text-align:right">131</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩8,900,450</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩509</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">알파벳 A</td><td style="padding:8px 12px;text-align:right">12</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩6,396,869</td><td style="padding:8px 12px;text-align:right"><span style="color:#dc2626">₩-225</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">테슬라 레버리지</td><td style="padding:8px 12px;text-align:right">253</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩5,264,527</td><td style="padding:8px 12px;text-align:right"><span style="color:#dc2626">₩-716</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">케이던스 디자인 시스템즈</td><td style="padding:8px 12px;text-align:right">6</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩3,510,750</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩291</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">모놀리식 파워 시스템즈</td><td style="padding:8px 12px;text-align:right">1</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩2,345,172</td><td style="padding:8px 12px;text-align:right"><span style="color:#dc2626">₩-42</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">테슬라</td><td style="padding:8px 12px;text-align:right">4</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩2,190,909</td><td style="padding:8px 12px;text-align:right"><span style="color:#dc2626">₩-24</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">코히어런트</td><td style="padding:8px 12px;text-align:right">3</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,975,154</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩105</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">엔비디아</td><td style="padding:8px 12px;text-align:right">5</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,686,550</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩115</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">NASA</td><td style="padding:8px 12px;text-align:right">31</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,418,276</td><td style="padding:8px 12px;text-align:right"><span style="color:#dc2626">₩-390</span></td></tr><tr style="border-bottom:1px solid #f1f5f9"><td style="padding:8px 12px"><span style="background:#fce7f3;color:#be185d;padding:1px 6px;border-radius:4px;font-size:10px">미국</span></td><td style="padding:8px 12px;font-weight:600">로켓 랩</td><td style="padding:8px 12px;text-align:right">7</td><td style="padding:8px 12px;text-align:right;font-weight:600">₩1,064,256</td><td style="padding:8px 12px;text-align:right"><span style="color:#16a34a">+₩237</span></td></tr></tbody></table><p style="font-size:11px;color:#9ca3af;margin-top:8px">※ 만기완료 예적금은 표시 제외 | 국내 ETF는 지수별로 통합 표시 | 미국주식 환율 반영</p>
+  </div>
+</div>
+
+<!-- TAB: 스캔 -->
+<div id="tab-scan" class="tab-content">
+  <div class="section">
+    <div class="section-title">오늘의 스캔 결과</div>
+    <div class="empty">스캔 결과 없음</div>
+  </div>
+</div>
+
+<!-- TAB: 포트폴리오 -->
+<div id="tab-port" class="tab-content">
+  <div class="section">
+    <div class="section-title">포트폴리오 현황</div>
+    <div class="empty">포트폴리오 데이터 없음</div>
+  </div>
+</div>
+
+<!-- TAB: 실적 -->
+<div id="tab-earn" class="tab-content">
+  <div class="section">
+    <div class="section-title">분기별 실적</div>
+    <div class="empty">실적 데이터 없음</div>
+  </div>
+</div>
+
+<!-- TAB: 섹터 -->
+<div id="tab-sector" class="tab-content">
+  <div class="section">
+    <div class="section-title">섹터 동향</div>
+    <div class="cards"></div>
+  </div>
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector('[data-tab="'+name+'"]').classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+</script>
+</body>
+</html>
