@@ -1,4 +1,5 @@
-yfinance==0.2.51
+yfinance
+curl_cffi
 pandas
 numpy
 requests
@@ -11,3 +12,4 @@ matplotlib
 nbconvert
 ipykernel
 jupyter
+lxml
