@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
@@ -64,4 +66,13 @@ jobs:
           git add sector_data_cache.json 2>/dev/null || true
           git add company_names.json 2>/dev/null || true
           git diff --staged --quiet || git commit -m "report: $(date +%Y-%m-%d)"
-          git push
+          # 원격이 앞서 있을 수 있으므로 rebase 후 push, 경합 시 재시도
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; sleep 5; continue; }
+            if git push origin HEAD:main; then
+              echo "push 성공 (시도 $i)"; exit 0
+            fi
+            echo "push 경합 — 재시도 $i"; sleep 5
+          done
+          echo "push 최종 실패"; exit 1
