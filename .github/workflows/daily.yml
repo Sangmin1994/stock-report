@@ -65,6 +65,7 @@ jobs:
           git add sector_map*.json 2>/dev/null || true
           git add sector_data_cache.json 2>/dev/null || true
           git add company_names.json 2>/dev/null || true
+          git add company_domains.json 2>/dev/null || true
           git diff --staged --quiet || git commit -m "report: $(date +%Y-%m-%d)"
           # 노트북 재실행으로 변경된 tracked 파일 되돌림 (커밋 대상 아님 → rebase 차단 방지)
           git checkout -- . 2>/dev/null || true
