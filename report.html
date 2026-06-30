@@ -110,10 +110,38 @@ tr:hover td { background: rgba(77,158,255,.04); }
 .score-lo { background: rgba(248,113,113,.2); color: var(--red); border: 1px solid rgba(248,113,113,.4); }
 /* Empty */
 .empty { padding: 48px; text-align: center; color: var(--muted); font-size: 14px; }
+/* ===== 모바일 반응형 ===== */
 @media (max-width: 768px) {
-  .header { padding: 16px; }
-  .tab-content { padding: 16px; }
-  .cards .card { min-width: 140px; }
+  body { font-size: 13px; -webkit-text-size-adjust: 100%; }
+  .header { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .header h1 { font-size: 18px; }
+  .header .date { font-size: 11px; }
+  .header > div:last-child { text-align: left !important; }
+  .tabs { padding: 10px 12px 0; gap: 2px; flex-wrap: nowrap;
+          overflow-x: auto; -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 8px 12px; font-size: 13px; white-space: nowrap; flex: 0 0 auto; }
+  .tab-content { padding: 14px 12px; }
+  .section { margin-bottom: 22px; }
+  .section-title { font-size: 13px; margin-bottom: 12px; }
+  .cards { gap: 10px; }
+  .card { padding: 14px 16px; flex: 1 1 calc(50% - 10px); min-width: calc(50% - 10px); }
+  .card .value { font-size: 19px; }
+  .card .label, .card .sub { font-size: 11px; }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab-content table {
+    display: block; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    max-width: 100%; white-space: nowrap;
+  }
+  .tab-content th, .tab-content td { padding: 8px 10px; font-size: 12px; }
+  .tab-content table::-webkit-scrollbar { height: 5px; }
+  .tab-content table::-webkit-scrollbar-thumb {
+    background: var(--border); border-radius: 3px;
+  }
+}
+@media (max-width: 420px) {
+  .card { flex: 1 1 100%; min-width: 100%; }
 }
 </style>
 </head>
