@@ -22,3 +22,10 @@ logs/
 # *.csv
 backtest_result.csv
 backtest_log.txt
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
