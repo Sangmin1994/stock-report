@@ -21,3 +21,4 @@ logs/
 # 데이터 파일 (선택적 — 커밋하려면 이 줄 삭제)
 # *.csv
 backtest_result.csv
+backtest_log.txt

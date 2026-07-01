@@ -48,7 +48,8 @@ def load_notebook_funcs():
           "datetime": datetime, "date": date, "timedelta": timedelta}
     # 순서 주의: 의존 함수 먼저
     for name in ["hts_rsi", "stoch_slow", "ichimoku_hts", "calc_atr",
-                 "prepare_df", "count_buy_signals", "_classify_signal", "market_regime"]:
+                 "prepare_df", "count_buy_signals", "_classify_signal", "market_regime",
+                 "get_sp500_tickers_auto", "get_nasdaq100_tickers_auto"]:
         try:
             exec(_extract(src, name), ns)
         except Exception as e:
@@ -163,13 +164,37 @@ def _summary(df, horizons):
         print()
 
 
+def build_universe(name):
+    """--universe sp500 | nasdaq100 | both → 노트북 스크레이퍼로 구성종목 수집."""
+    ns = load_notebook_funcs()
+    tk = []
+    try:
+        if name in ("sp500", "both"):
+            tk += list(ns["get_sp500_tickers_auto"]())
+        if name in ("nasdaq100", "both"):
+            tk += list(ns["get_nasdaq100_tickers_auto"]())
+    except Exception as e:
+        print(f"  [경고] 유니버스 수집 실패({e}) → 기본 종목군 사용")
+        return DEFAULT_TICKERS
+    tk = sorted(set(t.strip().upper() for t in tk if t and t.strip()))
+    return tk or DEFAULT_TICKERS
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tickers", default="")
+    ap.add_argument("--tickers", default="", help="쉼표구분 종목 (예: AAPL,MSFT)")
+    ap.add_argument("--universe", default="", choices=["", "sp500", "nasdaq100", "both"],
+                    help="구성종목 자동수집 (밤샘 실행용: both = S&P500+나스닥100)")
     ap.add_argument("--horizons", default="5,10,20")
     ap.add_argument("--min-hist", type=int, default=300)
     a = ap.parse_args()
-    tickers = [t.strip().upper() for t in a.tickers.split(",") if t.strip()] or DEFAULT_TICKERS
+    if a.tickers:
+        tickers = [t.strip().upper() for t in a.tickers.split(",") if t.strip()]
+    elif a.universe:
+        print(f"  유니버스 '{a.universe}' 수집 중...")
+        tickers = build_universe(a.universe)
+    else:
+        tickers = DEFAULT_TICKERS
     horizons = [int(h) for h in a.horizons.split(",")]
     print(f"  종목 {len(tickers)}개 · horizon {horizons} · 최소이력 {a.min_hist}")
     run(tickers, horizons, a.min_hist)
