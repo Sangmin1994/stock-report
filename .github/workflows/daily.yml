@@ -35,6 +35,8 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           GSHEET_ID: ${{ secrets.GSHEET_ID }}
           GSHEET_KEY_FILE: stately-transit-494900-i8-524c44e2e62d.json
+          TOSS_CLIENT_ID: ${{ secrets.TOSS_CLIENT_ID }}
+          TOSS_CLIENT_SECRET: ${{ secrets.TOSS_CLIENT_SECRET }}
         run: |
           jupyter nbconvert --to notebook --execute \
             --ExecutePreprocessor.timeout=3600 \
