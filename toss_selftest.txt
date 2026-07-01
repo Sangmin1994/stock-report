@@ -1,2 +1,2 @@
-[Toss self-test] 2026-07-01T14:12:17.113337
+[Toss self-test] 2026-07-01T14:43:47.267098
   [Toss] 토큰 발급 실패: 403 Client Error: Forbidden for url: https://openapi.tossinvest.com/oauth2/token
