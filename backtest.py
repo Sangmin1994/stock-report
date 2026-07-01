@@ -42,13 +42,22 @@ def _extract(src, name, kind="def"):
 def load_notebook_funcs():
     import yfinance as yf
     import ta
+    import requests
     from datetime import datetime, date, timedelta
     src = "".join(json.load(open(NB, encoding="utf-8"))["cells"][0]["source"])
-    ns = {"pd": pd, "np": np, "yf": yf, "ta": ta,
+    ns = {"pd": pd, "np": np, "yf": yf, "ta": ta, "requests": requests, "json": json,
           "datetime": datetime, "date": date, "timedelta": timedelta}
-    # 순서 주의: 의존 함수 먼저
+    # 폴백 상수 추출 (없으면 빈 리스트)
+    for cname in ["SP500_FALLBACK", "NASDAQ100_FALLBACK"]:
+        m = re.search(r"(?ms)^" + cname + r"\s*=\s*\[.*?\]", src)
+        try:
+            exec(m.group(0), ns) if m else ns.__setitem__(cname, [])
+        except Exception:
+            ns[cname] = []
+    # 순서 주의: 의존 함수 먼저 (헬퍼 → 스크레이퍼)
     for name in ["hts_rsi", "stoch_slow", "ichimoku_hts", "calc_atr",
                  "prepare_df", "count_buy_signals", "_classify_signal", "market_regime",
+                 "_constituents_cache_load", "_constituents_cache_save", "_clean_us_tickers",
                  "get_sp500_tickers_auto", "get_nasdaq100_tickers_auto"]:
         try:
             exec(_extract(src, name), ns)
