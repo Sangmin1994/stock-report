@@ -13,3 +13,4 @@ nbconvert
 ipykernel
 jupyter
 lxml
+openpyxl
